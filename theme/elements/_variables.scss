@@ -1,1 +1,8 @@
-$border-radius: 16px;
+// Comuns
+// fundo gradiente preto
+$arena-black-gradient-background: linear-gradient(180deg, #353535 0%, #000000 100%);
+// borda laranja 1px
+$arena-border: 1px solid hsl(38, 77%, 41%);
+// Tournament Card
+$Tcard-border-radius: 16px !default;
+$Tcard-padding: 2rem !default;
