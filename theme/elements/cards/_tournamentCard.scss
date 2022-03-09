@@ -1,28 +1,51 @@
 .card-tournament-info {
     background: #090c12;
-    border-radius: $sp-6;
     width: auto;
     height: auto;
     padding: 1rem;
     border: $arena-border;
+    border-bottom-left-radius: $sp-6;
+    border-bottom-right-radius: $sp-6;
+    background-image: $arena-background-image;
+    background-size: cover;
 }
 
 .card-tournament {
-    background: $transparent-blue;
+    background: transparent;
     border-radius: $sp-6;
     border: $arena-border;
-    border-bottom: 0px !important;
-    width: fit-content;
+    border-top: 0;
+    min-width: 23rem !important;
 }
 
-.card-tournament:first-of-type{
+.card-tournament:first-of-type {
     margin-left: 0 !important;
+}
+
+.t-cripto {
+    background-color: $transparent-blue;
+}
+
+.t-action {
+    background-color: #7e1010;
+}
+
+.t-header {
+    width: 100%;
+    border: $arena-border;
+    border-bottom: none;
 }
 
 // Responsivo
 
 @include media-breakpoint-down(md) {
     .card-tournament {
-      font-size: small;
+        font-size: small;
     }
-  }
+}
+
+@include media-breakpoint-down(md) {
+    .tournament-card-container {
+        overflow-x: scroll;
+    }
+}

@@ -201,7 +201,8 @@ $utilities: map-merge(
                                 class: ww,
                                 values: (
                                         50: 50%,
-                                        100: 100%
+                                        100: 100%,
+                                        auto: auto
                                 )
                         ),
                         "flex-direction": (
