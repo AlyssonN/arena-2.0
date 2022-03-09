@@ -195,6 +195,15 @@ $utilities: map-merge(
                                 property: flex,
                                 values: (fill: 1 1 auto)
                         ),
+                        "w50": (
+                                responsive: true,
+                                property: width,
+                                class: ww,
+                                values: (
+                                        50: 50%,
+                                        100: 100%
+                                )
+                        ),
                         "flex-direction": (
                                 responsive: true,
                                 property: flex-direction,

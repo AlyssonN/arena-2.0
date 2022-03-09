@@ -24,6 +24,7 @@
 
 .arena-orange-gradient-text {
     background: -webkit-linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

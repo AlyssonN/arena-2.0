@@ -29,3 +29,10 @@ $value in $arena-colors {
         @include button-variant($value, $value);
     }
 }
+
+@each $color,
+$value in $arena-colors {
+    .alert-arena-#{$color} {
+        @include alert-variant($value, $value, $value);
+    }
+}
