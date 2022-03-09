@@ -14,3 +14,15 @@
     border-bottom: 0px !important;
     width: fit-content;
 }
+
+.card-tournament:first-of-type{
+    margin-left: 0 !important;
+}
+
+// Responsivo
+
+@include media-breakpoint-down(md) {
+    .card-tournament {
+      font-size: small;
+    }
+  }

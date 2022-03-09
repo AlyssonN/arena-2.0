@@ -10820,11 +10820,19 @@ textarea.form-control-lg {
   width: fit-content;
 }
 
+.card-tournament:first-of-type {
+  margin-left: 0 !important;
+}
+
+@media (max-width: 767.98px) {
+  .card-tournament {
+    font-size: small;
+  }
+}
 .card-gradient {
   background: linear-gradient(180deg, #353535 0%, #000000 100%);
   border: 1px solid #b97e18;
   border-radius: 16px;
-  padding: 2rem;
   color: white;
 }
 
