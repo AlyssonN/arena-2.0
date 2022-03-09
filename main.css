@@ -7,7 +7,7 @@
  */
 @font-face {
   font-family: Inter;
-  src: url(../../assets/Inter-VariableFont_slnt\,wght.ttf) format("truetype-variations");
+  src: url(../Inter-VariableFont_slnt\,wght.ttf) format("truetype-variations");
   font-weight: 1 999;
 }
 :root {
@@ -2163,7 +2163,7 @@ progress {
   color: white;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: none;
   appearance: none;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -11167,6 +11167,61 @@ textarea.form-control-lg {
 }
 .alert-arena-dark-blue .alert-link {
   color: #0d456e;
+}
+
+.form-group input, .form-group input:focus, .form-group input:disabled {
+  background: #111111;
+  border-radius: 4px;
+  color: #FFFFFF;
+  padding: 0.8rem 0.9rem;
+  border-color: none;
+  box-shadow: none;
+}
+
+label {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+label span {
+  color: 700;
+}
+
+.with-icon-right .material-icons {
+  position: relative;
+  top: 4.2rem;
+  left: 94%;
+}
+
+.background-blackdegrade {
+  background: linear-gradient(180deg, #404040 0%, #0A0A0A 100%);
+  margin-bottom: 84%;
+}
+
+.menus {
+  padding-left: 5.5rem;
+  padding-right: 5.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: black;
+}
+
+.selecionado {
+  background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+  border-radius: 5px;
+}
+
+.left-section {
+  width: 20%;
+  margin-right: 2%;
+}
+
+.right-section {
+  width: 100%;
+}
+
+.main-profile-section {
+  display: flex;
 }
 
 /*# sourceMappingURL=main.css.map */
