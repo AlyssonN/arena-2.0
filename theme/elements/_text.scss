@@ -1,0 +1,29 @@
+.arena-orange-text {
+    color: $arena-orange;
+}
+
+.arena-orange-background {
+    background-color: $arena-orange;
+}
+
+.arena-light-blue-text {
+    color: $arena-light-blue;
+}
+
+.arena-light-blue-background {
+    background-color: $arena-light-blue;
+}
+
+.arena-light-grey-text {
+    color: rgba(235, 235, 235, 1);
+}
+
+.arena-light-grey-background {
+    background-color: rgba(235, 235, 235, 1);
+}
+
+.arena-orange-gradient-text {
+    background: -webkit-linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,25 @@
+.letter-card {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background: #37CA69;
+    border-radius: 10px;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 8px;
+    font-weight: bolder;
+    font-size: x-large !important;
+}
+
+.letter-card-small {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background: #37CA69;
+    border-radius: 5px;
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+}

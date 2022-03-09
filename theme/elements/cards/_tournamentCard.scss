@@ -1,9 +1,16 @@
-.card-tournament {
+.card-tournament-info {
     background: #090c12;
-    border-radius: 6px;
-    width: 408px;
+    border-radius: $sp-6;
+    width: auto;
     height: auto;
-    margin-right: 20px;
     padding: 1rem;
-    border: 1px solid #B97E18;
+    border: $arena-border;
+}
+
+.card-tournament {
+    background: $transparent-blue;
+    border-radius: $sp-6;
+    border: $arena-border;
+    border-bottom: 0px !important;
+    width: fit-content;
 }

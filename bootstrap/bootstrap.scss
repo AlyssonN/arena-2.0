@@ -7,7 +7,9 @@
 
 // scss-docs-start import-stack
 // Configuration
+@import "font";
 @import "functions";
+@import "../theme/elements/variables";
 @import "variables";
 @import "mixins";
 @import "utilities";
@@ -50,4 +52,5 @@
 //Arena
 // Elements
 @import "../theme/elements/cards";
-@import "../theme/elements/variables"
+@import "../theme/elements/text";
+@import "../theme/elements/buttons";

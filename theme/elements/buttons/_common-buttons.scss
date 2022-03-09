@@ -1,0 +1,31 @@
+.transparent-grey-button {
+    background: $arena-transparent-grey;
+    border-radius: 6px;
+    color: white;
+    width: 106px;
+    height: 45px;
+    border-color: transparent;
+}
+
+.with-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscribe-button {
+    background: #104f7d;
+    border-radius: 6px;
+    color: white;
+    width: 106px;
+    height: 45px;
+    border-color: transparent;
+    margin-left: 6px;
+}
+
+@each $color,
+$value in $arena-colors {
+    .btn-arena-#{$color} {
+        @include button-variant($value, $value);
+    }
+}
