@@ -11481,6 +11481,10 @@ label span {
   color: 700;
 }
 
+header {
+  margin-top: 3%;
+}
+
 .with-icon-right .material-icons {
   position: relative;
   top: 4.2rem;
@@ -11489,12 +11493,18 @@ label span {
 
 .background-blackdegrade {
   background: linear-gradient(180deg, #404040 0%, #0A0A0A 100%);
-  margin-bottom: 84%;
+  max-width: 19rem;
+}
+
+header h1, header .h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .menus {
-  padding-left: 5.5rem;
-  padding-right: 5.5rem;
+  width: max-content;
+  min-width: 19rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: black;
@@ -11511,11 +11521,59 @@ label span {
 }
 
 .right-section {
+  background: linear-gradient(180deg, #404040 0%, #0A0A0A 100%);
   width: 100%;
+  padding: 3rem;
+  border-radius: 5px;
 }
 
-.main-profile-section {
+.bottom-form {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.top-form {
+  margin-bottom: 2rem;
+}
+
+.bottom-form {
+  flex-wrap: 2rem;
+}
+
+.top-form nick-input {
+  width: 30%;
+  margin-left: 1rem;
+}
+
+.bottom-form nick-input {
+  min-width: 48%;
+  margin: 1rem 0 0 1rem;
+}
+
+.right-section .save-btn {
+  background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+  border-radius: 5px;
+  border: none;
+  color: white;
+  margin-right: 1.5rem;
+  max-width: fit-content;
+  min-height: 3rem;
+  padding: 0.5rem;
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.color-grey-700 {
+  color: #74798C;
+}
+
+.top-left-side-menu {
+  text-align: -webkit-center;
 }
 
 .pc-card-header {
