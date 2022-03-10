@@ -29,6 +29,24 @@
     -webkit-text-fill-color: transparent;
 }
 
+.arena-orange-gradient-background {
+    background: -webkit-linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
+}
+
 .text-size-s{
     font-size: small;
+}
+
+.text-size-l{
+    font-size: large;
+}
+
+.text-size-xxl {
+    font-size: x-large;
+}
+
+@include media-breakpoint-down(md) {
+    .text-size-xxl {
+        font-size: large;
+    }
 }
