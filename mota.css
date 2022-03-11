@@ -3852,7 +3852,7 @@ textarea.form-control-lg {
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
   background-color: #363636;
-  border-color: #37ca69 #37ca69 #363636;
+  border-color: #dee2e6 #dee2e6 #363636;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -11222,10 +11222,6 @@ textarea.form-control-lg {
 
 .text-size-xxl {
   font-size: x-large;
-}
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 @media (max-width: 767.98px) {

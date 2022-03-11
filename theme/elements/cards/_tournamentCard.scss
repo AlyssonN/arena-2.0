@@ -10,6 +10,10 @@
     background-size: cover;
 }
 
+.arena-border {
+    border: $arena-border;
+}
+
 .card-tournament {
     background: transparent;
     border-radius: $sp-6;
@@ -37,7 +41,6 @@
 }
 
 // Responsivo
-
 @include media-breakpoint-down(md) {
     .card-tournament {
         font-size: small;

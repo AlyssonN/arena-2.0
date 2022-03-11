@@ -1,6 +1,8 @@
 // Comuns
+
 // fundo gradiente preto
 $arena-black-gradient-background: linear-gradient(180deg, #353535 0%, #000000 100%) !default;
+
 $arena-card-white-color: white !default;
 $background-color: #363636;
 $transparent-blue: rgba(0, 100, 173, 0.7);
@@ -9,9 +11,36 @@ $arena-orange: #37ca69;
 $arena-dark-blue: #105689;
 $arena-transparent-grey: rgba(138, 138, 138, 0.4);
 $arena-light-blue: rgba(30, 188, 197, 1);
-$arena-background-image: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9) ), url('../../../../assets/cardFundo.png');
+$arena-background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url("../../../../assets/cardFundo.png");
+
+// Badges
+$cripto: #0d5f8e;
+$futuros: #7104a5;
+$actives: #b03736;
+$flls: #6e994c;
+
 // borda laranja 1px
-$arena-border: 1px solid hsl(38, 77%, 41%) !default;
+$arena-border: 1px solid hsl(38, 77%, 41%) !important;
+
 // Tournament Card
 $Tcard-border-radius: 16px !default;
 $Tcard-padding: 2rem !default;
+
+// Cores
+$arena-black: #121212;
+
+$arena-colors: (
+    "blue": #346dc5,
+    "orange": $arena-orange,
+    "light-blue": $arena-light-blue,
+    "transparent-blue": $transparent-blue,
+    "transparent-grey": $arena-transparent-grey,
+    "dark-blue": $arena-dark-blue,
+    "grey": $background-color,
+    "cripto": $cripto,
+    "future": $futuros,
+    "actives": $actives,
+    "flls": $flls,
+    "12black": $arena-black
+);

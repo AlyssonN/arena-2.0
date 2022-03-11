@@ -1,0 +1,17 @@
+<div class="mt-3">
+    <ul class="nav nav-tabs ww-50 ww-sm-auto" id="myTab" role="tablist">
+        <li (click)="(var_item_1 ? var_item_1 = false : var_item_1 = true);(var_item_1 ? var_item_2 = false : var_item_2 = true)" class="nav-item " role="presentation">
+            <button [ngClass]="{'active' : var_item_1}" class="nav-link p-4 px-5 text-size-l fw-bold active arena-orange-gradient-text" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Em andamento</button>
+        </li>
+        <li (click)="(var_item_2 ? var_item_1 = true : var_item_1 = false);(var_item_2 ? var_item_2 = false : var_item_2 = true)" class="nav-item ww-50 ww-sm-auto" role="presentation">
+            <button [ngClass]="{'active' : var_item_2}" class="nav-link p-4 px-5 text-size-l fw-bold arena-orange-gradient-text" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Histórico</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div [ngClass]="{'active show' : var_item_1}" class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            ...
+
+        </div>
+        <div [ngClass]="{'show active' : var_item_2}" class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+    </div>
+</div>
