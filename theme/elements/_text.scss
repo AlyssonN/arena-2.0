@@ -67,8 +67,6 @@
     font-size: x-large;
 }
 
-<<<<<<< HEAD
-=======
 .cursor-pointer {
     cursor: pointer;
 }
@@ -77,7 +75,6 @@ progress[value] {
     background-color: #eee;
 }
 
->>>>>>> e077449b4283e71f37af5c9b0208c734964b885c
 @include media-breakpoint-down(md) {
     .text-size-xxl {
         font-size: large;
