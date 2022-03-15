@@ -6,7 +6,6 @@
  */
 
 // scss-docs-start import-stack
-
 // Configuration
 @import "font";
 @import "functions";
@@ -14,7 +13,6 @@
 @import "variables";
 @import "mixins";
 @import "utilities";
-
 // Layout & components
 @import "root";
 @import "reboot";
@@ -46,22 +44,18 @@
 @import "carousel";
 @import "spinners";
 @import "offcanvas";
-
 // Helpers
 @import "helpers";
-
 // Utilities
 @import "utilities/api";
-
-
 //Arena
-
 // Elements
 @import "../theme/elements/cards";
 @import "../theme/elements/text";
 @import "../theme/elements/buttons";
 @import "../theme/elements/forms";
+@import "../theme/elements/modal";
+@import "../theme/elements/table";
 // Pages
 @import "../theme/pages/profile";
 @import "../theme/pages/home";
-@import "../theme/elements/modal";

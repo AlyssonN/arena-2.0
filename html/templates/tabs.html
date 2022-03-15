@@ -1,0 +1,24 @@
+<div class="mt-3">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li (click)="(var_item_3 || var_item_2) && (var_item_3 = false + var_item_2 = false + var_item_1 = true)" class="nav-item " role="presentation">
+            <button [ngClass]="{'active arena-orange-gradient-text' : var_item_1 === true}" class="background-none nav-link text-size-l fw-bold active arena-orange-gradient-text" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                aria-selected="true">Torneios</button>
+        </li>
+        <li (click)="(var_item_1 || var_item_3) && (var_item_1 = false + var_item_3 = false + var_item_2 = true)" class="nav-item ww-sm-auto" role="presentation">
+            <button [ngClass]="{'active arena-orange-gradient-text' : var_item_2 === true}" class="background-none nav-link text-size-l fw-bold" id="ranking-tab" data-bs-toggle="tab" data-bs-target="#ranking" type="button" role="tab" aria-controls="ranking" aria-selected="false">Ranking</button>
+        </li>
+        <li (click)="(var_item_1 || var_item_2) && (var_item_1 = false + var_item_2 = false + var_item_3 = true)" class="nav-item ww-sm-auto" role="presentation">
+            <button [ngClass]="{'active arena-orange-gradient-text' : var_item_3 === true}" class="background-none nav-link text-size-l fw-bold" id="learn-tab" data-bs-toggle="tab" data-bs-target="#learn" type="button" role="tab" aria-controls="learn" aria-selected="false">Aprenda</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div [ngClass]="{'active show' : var_item_1}" class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            ...
+        </div>
+        <div [ngClass]="{'show active' : var_item_2}" class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-content" id="myTabContent">
+            <div [ngClass]="{'active show' : var_item_3 === true}" class="tab-pane fade show active" id="learn" role="tabpanel" aria-labelledby="learn-tab">
+            </div>
+        </div>
+    </div>
+</div>

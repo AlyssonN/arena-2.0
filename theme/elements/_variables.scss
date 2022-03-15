@@ -15,3 +15,25 @@ $arena-border: 1px solid hsl(38, 77%, 41%) !default;
 // Tournament Card
 $Tcard-border-radius: 16px !default;
 $Tcard-padding: 2rem !default;
+<<<<<<< HEAD
+=======
+
+// Cores
+$arena-black: #121212;
+$arena-grey: #74798C;
+
+$arena-colors: (
+    "blue": #346dc5,
+    "orange": $arena-orange,
+    "light-blue": $arena-light-blue,
+    "transparent-blue": $transparent-blue,
+    "transparent-grey": $arena-transparent-grey,
+    "dark-blue": $arena-dark-blue,
+    "grey": $background-color,
+    "cripto": $cripto,
+    "future": $futuros,
+    "actives": $actives,
+    "flls": $flls,
+    "12black": $arena-black
+);
+>>>>>>> e077449b4283e71f37af5c9b0208c734964b885c
