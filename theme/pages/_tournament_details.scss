@@ -1,0 +1,38 @@
+.right-section-tournament .save-btn {
+    background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin-right: 1.5rem;
+    max-width: fit-content;
+    min-height: 3rem;
+    padding: 0.5rem;
+}
+
+.right-section-tournament {
+    background: black;
+    width: 100%;
+    padding: 3rem;
+    border-radius: 34px;
+}
+
+.right-section-tournament button {
+    background: #2D2D2D;
+    color: #E9E9E9;
+    min-width: 133px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 14px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    margin: 6px
+}
+
+.right-section-tournament .selecionado {
+    background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+}
+
+.tournament-bottom {
+    width: fit-content;
+}
