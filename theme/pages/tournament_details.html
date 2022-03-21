@@ -20,41 +20,56 @@
             </div>
         </section>
         <section class="right-section-tournament">
-            <div class="d-md-flex top-form flex-column">                
-                    <nick-input id="cpf" placeholder="CPF" class="ww-100 ww-md-25 beta-mr-28 d-block w-100 beta-mr-28">
-                        <nick-group>
-                          <div class="form-group">
-                            <label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">CPF </label>
-                            <small class="field-required">(Obrigatório)</small>
-                            <input class="form-control ng-untouched ng-pristine ng-invalid"
-                              id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
-                              placeholder="CPF" type="text-area">
-                          </div>
-                        </nick-group>
-                      </nick-input>
-                      <nick-input id="cpf" placeholder="CPF" class="ww-100 ww-md-25 beta-mr-28 d-block w-100beta-mr-28">
-                        <nick-group>
-                          <div class="form-group"><label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">CPF </label>
-                            <small class="field-required">(Obrigatório)</small>
-                            <input class="form-control ng-untouched ng-pristine ng-invalid"
-                              id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
-                              placeholder="CPF" type="text">
-                          </div>
-                        </nick-group>
-                      </nick-input>
-                
-            </div>
-            <div class="tournament-bottom">
-                <p class="text-center fw-bold">Ativos da Liga</p>
+        <div class="d-flex flex-wrap">
+          <div class="mx-3">Img</div>
+          <div class="d-md-flex top-form flex-column flex-md-grow-1">                
+                  <nick-input id="cpf" placeholder="CPF" class="ww-100 ww-md-60 beta-mr-28 d-block w-100 beta-mr-28">
+                      <nick-group>
+                        <div class="form-group">
+                          <label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">Descrição </label>
+                          <small class="field-required">(Obrigatório)</small>
+                          <input class="form-control ng-untouched ng-pristine ng-invalid"
+                            id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
+                            placeholder="CPF" type="text-area">
+                        </div>
+                      </nick-group>
+                    </nick-input>
+                    <nick-input id="cpf" placeholder="CPF" class="ww-100 ww-md-60 beta-mr-28 d-block w-100 my-3">
+                      <nick-group>
+                        <div class="form-group"><label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">Nome da Liga</label>
+                          <small class="field-required">(Obrigatório)</small>
+                          <textarea class="form-control ng-untouched ng-pristine ng-invalid"
+                            id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
+                            placeholder="Escreva a descrição que aparecerá nos detalhes do correio" type="text"></textarea>
+                        </div>
+                      </nick-group>
+                    </nick-input>
+              
+          </div>
+        </div>
+          <div class="tournament-bottom">
+              <p class="text-center fw-bold ww-100">Ativos da Liga</p>
+              <div class="d-flex flex-wrap justify-content-center">
                 <button>Futuros</button>
                 <button class="selecionado">Ações</button>
                 <button>Criptomoedas</button>
-                <button>Fiis</button>
-            </div>
-            <div class="d-flex justify-content-end align-items-center">
-                <button class="mx-2">Voltar</button>
-                <button class="save-btn">Salvar Dados</button>
-            </div>
+                <button>Flls</button>
+              </div>
+          </div>
+          <nick-select id="cpf" placeholder="CPF" class="ww-100 ww-md-25 beta-mr-28 d-block my-5">
+            <nick-group>
+              <div class="form-group"><label for="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb">Indentidade Visual</label>
+                <small class="field-required">(Obrigatório)</small>
+                <select class="form-control ng-untouched ng-pristine ng-invalid"
+                  id="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb" name="c059f48f-ad19-4fe2-9ca0-b42a6e5de2cb"
+                  placeholder="CPF" type="text"></select>
+              </div>
+            </nick-group>
+          </nick-select>
+          <div class="d-flex justify-content-end align-items-center">
+              <button class="mx-2 return-btn">Voltar</button>
+              <button class="save-btn">Salvar Dados</button>
+          </div>
         </section>
     </main>
 </body>

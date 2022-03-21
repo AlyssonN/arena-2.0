@@ -11874,9 +11874,14 @@ header h1, header .h1 {
   border: none;
   color: white;
   margin-right: 1.5rem;
-  max-width: fit-content;
+  max-width: 15rem;
   min-height: 3rem;
   padding: 0.5rem;
+}
+
+.right-section-tournament .return-btn {
+  color: #F68181;
+  background: black;
 }
 
 .right-section-tournament {
@@ -11884,6 +11889,28 @@ header h1, header .h1 {
   width: 100%;
   padding: 3rem;
   border-radius: 34px;
+}
+
+label {
+  white-space: nowrap;
+}
+
+.form-group select, .form-group select:focus, .form-group select:disabled {
+  background: #111111;
+  border-radius: 4px;
+  color: #FFFFFF;
+  padding: 0.8rem 0.9rem;
+  border-color: none;
+  box-shadow: none;
+}
+
+.form-group textarea, .form-group textarea:focus, .form-group textarea:disabled {
+  background: #111111;
+  border-radius: 4px;
+  color: #FFFFFF;
+  padding: 0.8rem 0.9rem;
+  border-color: none;
+  box-shadow: none;
 }
 
 .right-section-tournament button {
@@ -11899,12 +11926,25 @@ header h1, header .h1 {
   margin: 6px;
 }
 
+.right-section-tournament nick-input {
+  max-width: 29rem;
+}
+
 .right-section-tournament .selecionado {
   background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
 }
 
 .tournament-bottom {
   width: fit-content;
+}
+
+.tournament-content-description {
+  min-width: 38%;
+}
+
+.tournament-content-buttons button {
+  background: transparent;
+  border: 1px solid white;
 }
 
 .pc-card-header {
