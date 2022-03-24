@@ -11639,6 +11639,28 @@ header {
   left: 94%;
 }
 
+.form-group select, .form-group select:focus, .form-group select:disabled {
+  background: #111111;
+  border-radius: 4px;
+  color: #FFFFFF;
+  padding: 0.8rem 0.9rem;
+  border-color: none;
+  box-shadow: none;
+}
+
+label {
+  white-space: nowrap;
+}
+
+.form-group textarea, .form-group textarea:focus, .form-group textarea:disabled {
+  background: #111111;
+  border-radius: 4px;
+  color: #FFFFFF;
+  padding: 0.8rem 0.9rem;
+  border-color: none;
+  box-shadow: none;
+}
+
 .img-100 {
   max-width: 100%;
   max-height: 100%;
@@ -11891,28 +11913,6 @@ header h1, header .h1 {
   border-radius: 34px;
 }
 
-label {
-  white-space: nowrap;
-}
-
-.form-group select, .form-group select:focus, .form-group select:disabled {
-  background: #111111;
-  border-radius: 4px;
-  color: #FFFFFF;
-  padding: 0.8rem 0.9rem;
-  border-color: none;
-  box-shadow: none;
-}
-
-.form-group textarea, .form-group textarea:focus, .form-group textarea:disabled {
-  background: #111111;
-  border-radius: 4px;
-  color: #FFFFFF;
-  padding: 0.8rem 0.9rem;
-  border-color: none;
-  box-shadow: none;
-}
-
 .right-section-tournament button {
   background: #2D2D2D;
   color: #E9E9E9;
@@ -11945,6 +11945,19 @@ label {
 .tournament-content-buttons button {
   background: transparent;
   border: 1px solid white;
+}
+
+.tournament-ranking-btn {
+  background: red;
+  color: #E9E9E9;
+  min-width: 133px;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 14px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  margin: 6px;
 }
 
 .pc-card-header {
