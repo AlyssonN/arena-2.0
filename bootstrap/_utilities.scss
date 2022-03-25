@@ -549,6 +549,18 @@ $utilities: map-merge(
                                                 )
                                 )
                         ),
+                        "arena-background-color": (
+                                property: background-color,
+                                class: abg,
+                                values: map-merge(
+                                                $arena-colors,
+                                                (
+                                                        "body": $body-bg,
+                                                        "white": $white,
+                                                        "transparent": transparent
+                                                )
+                                )
+                        ),
                   // scss-docs-end utils-bg-color
                         "gradient": (
                                 property: background-image,
