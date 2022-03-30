@@ -3,4 +3,17 @@
     border: $arena-border;
     border-radius: $Tcard-border-radius;
     color: $arena-card-white-color;
+    padding: 1rem;
+}
+
+.card-gradient-black {
+    background: $arena-gradient-black-background;
+    border: $arena-border;
+    border-radius: $Tcard-border-radius;
+    color: $arena-card-white-color;
+    padding: 1rem;
+}
+
+.arena-border {
+    border: $arena-border;
 }
