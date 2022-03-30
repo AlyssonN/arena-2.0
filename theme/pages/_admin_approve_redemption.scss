@@ -1,0 +1,23 @@
+.black-background {
+    background: linear-gradient(180deg, #404040 0%, #0A0A0A 100%);
+}
+
+.upper-table-cell {
+    min-width: 20%;
+}
+
+.admin-table-striped tr:nth-child(2n) {
+    background-color: #2f3133;
+}
+
+.admin-table-striped {
+    color: #74798C
+}
+
+@media(min-width: 760px) {
+
+    .upper-table-cell div:nth-child(2) {
+        border-right: 1px solid #dee2e6 !important;
+    }
+    
+}

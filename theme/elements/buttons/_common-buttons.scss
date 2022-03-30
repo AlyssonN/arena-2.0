@@ -23,6 +23,17 @@
     margin-left: 6px;
 }
 
+.btn-arena {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    margin: 6px
+}
+
 @each $color,
 $value in $arena-colors {
     .btn-arena-#{$color} {
