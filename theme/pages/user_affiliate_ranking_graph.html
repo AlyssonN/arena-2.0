@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena GoTrade</title>
+    <link rel="stylesheet" href="../../../main.css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+        rel="stylesheet">
+</head>
+
+<body>
+    <main class="w-100 d-flex my-5 flex-wrap flex-column align-items-center">
+        <div class="d-flex ww-90 flex-xl-row flex-column">
+            <div
+                class="ww-100  ww-xl-60 d-flex flex-xl-row flex-column rounded-10 black-background arena-border pe-lg-5 pb-4 my-1 me-2">
+                <div class="ww-xl-25 ww-100 d-flex flex-column align-items-center  p-3">
+                    <img src="../../assets/rectangle-pic.png" class="rounded ww-30 ww-xl-60">
+                    <div class="d-flex flex-column align-items-center mb-3">
+                        <span>Gabirel Jardim</span>
+                        <span>gjardim1</span>
+                    </div>
+                    <button class="btn-arena bg-transparent arena-border p-2">Ver Ranking</button>
+                </div>
+                <div class="ww-xl-75 ww-100 p-3">
+                    <span class="fs-5"><b>Torneio Tradestars 2 - Resultado</b></span>
+                    <div class="mb-4 border-bottom p-3 pb-1 d-flex justify-content-between ww-100">
+                        <div class="align-self-center d-flex flex-xl-row flex-column align-items-center">
+                            <i class="material-icons text-size-xxl arena-orange-gradient-text"
+                                style="font-size: 40px;">emoji_events</i>
+                            <span class=" fs-4 ms-3 arena-orange-gradient-text text-nowrap"><b>3º lugar</b></span>
+                        </div>
+                        <img src="../../assets/logo-arena.png">
+                    </div>
+                    <div class="d-flex  flex-lg-row flex-column align-items-center justify-content-end">
+                        <div
+                            class="d-flex flex-column align-items-center justify-content-between border mx-1 my-2 p-1 ww-lg-18 ww-45">
+                            <span>Operações</span>
+                            <img src="../../assets/graph-icon.png" class="my-3">
+                            <span>12</span>
+                        </div>
+                        <div
+                            class="d-flex flex-column align-items-center justify-content-between border my-2 mx-1 p-1 ww-lg-18 ww-45">
+                            <span>Assertividade</span>
+                            <img src="../../assets/task-check-icon.png" class="my-3">
+                            <span>62%</span>
+                        </div>
+                        <div
+                            class="d-flex flex-column align-items-center justify-content-between border  my-2 mx-1 p-1 ww-lg-18 ww-45">
+                            <span>L/P</span>
+                            <img src="../../assets/trophy-icon.png" class="my-3">
+                            <span class="text-success text-nowrap">+ R$ 850,00</span>
+                        </div>
+                        <div
+                            class="d-flex flex-column align-items-center justify-content-between border  my-2 mx-1 p-1 ww-lg-18 ww-45">
+                            <span>Saldo Final</span>
+                            <img src="../../assets/money-icon.png" class="my-3">
+                            <span class="text-nowrap">R$ 10.850,00</span>
+                        </div>
+                        <div class="d-flex flex-column align-items-center align-self-end my-2 mx-1 p-1 ww-lg-18 ww-45">
+                            <span>Prêmio</span>
+                            <div class="d-flex">
+                                <span class="text-nowrap mx-1">R$ 10.850,00</span>
+                                <span class="material-icons-outlined">visibility</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ww-100 ww-xl-40 rounded-10 black-background p-3 my-1 arena-border text-center align-middle">
+                <div class="d-flex flex-lg-row flex-column justify-content-between">
+                    <span class="fs-4"><b>Evolução L/P</b></span>
+                </div>
+                <div class="border w-100 m-auto mt-2 overflow-scroll" style="height: 35vh"></div>
+            </div>
+        </div>
+        <div class="d-flex flex-column  ww-90 flex-lg-row">
+            <div class="ww-xl-70 ww-100 rounded-10 black-background  arena-border px-5 my-1 overflow-scroll">
+                <div class="my-4 d-flex">
+                    <span class="fs-5 me-5 text-center"><b>Operações</b></span>
+                </div>
+                <table class="table text-center mw-50 ww-xl-80 affiliate-ranking-table">
+                    <thead>
+                        <tr>
+                            <th class="col">Abertura</th>
+                            <th class="col">Fechamento</th>
+                            <th class="col">Qtde.</th>
+                            <th class="col">Tempo</th>
+                            <th class="col">Pço. de Compra</th>
+                            <th class="col">Pço. de Venda</th>
+                            <th class="col">Res. Intervalo (R$)</th>
+                            <th class="col">Res. Intervalo (pts)</th>
+                            <th class="col">Res. Total (R$)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle admin-table-striped" style="color: white">
+                        <tr>
+                            <td class="col">09:12:35</td>
+                            <td class="col">09:12:35</td>
+                            <td class="col"><span class="bg-success py-1 px-2 rounded">2C</span><span
+                                    class="bg-danger py-1 px-2 rounded">1V</span></td>
+                            <td class="col"> 5min 54s</td>
+                            <td class="col">5205,50</td>
+                            <td class="col">5.195,00</td>
+                            <td class="col text-success"> + R$ 850</td>
+                            <td class="col text-success"> + 850pts</td>
+                            <td class="col text-success"> + R$ 850</td>
+                        </tr>
+                        <tr>
+                            <td class="col">09:12:35</td>
+                            <td class="col">09:12:35</td>
+                            <td class="col">
+                                <span class="bg-success py-1 px-2 rounded">2C</span>
+                                <span class="bg-danger py-1 px-2 rounded">1V</span></td>
+                            <td class="col"> 5min 54s</td>
+                            <td class="col">5205,50</td>
+                            <td class="col">5.195,00</td>
+                            <td class="col text-success"> + R$ 850</td>
+                            <td class="col text-success"> + 850pts</td>
+                            <td class="col text-success"> + R$ 850</td>
+                        </tr>
+                        <tr>
+                            <td class="col">09:12:35</td>
+                            <td class="col">09:12:35</td>
+                            <td class="col"><span class="bg-success py-1 px-2 rounded">2C</span><span
+                                    class="bg-danger py-1 px-2 rounded">1V</span></td>
+                            <td class="col"> 5min 54s</td>
+                            <td class="col">5205,50</td>
+                            <td class="col">5.195,00</td>
+                            <td class="col text-success"> + R$ 850</td>
+                            <td class="col text-success"> + 850pts</td>
+                            <td class="col text-success"> + R$ 850</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="ww-xl-30 ww-100 rounded-10 black-background  arena-border px-5 my-1 overflow-scroll">
+                <div class="my-4 d-flex">
+                    <span class="fs-5 me-5 text-center"><b>Ordens</b></span>
+                </div>
+                <table class="table text-center mw-50 ww-xl-80 affiliate-ranking-table">
+                    <thead>
+                        <tr>
+                            <th class="col">Horário</th>
+                            <th class="col">Executada</th>
+                            <th class="col">Tipo</th>
+                            <th class="col">Quant.</th>
+                            <th class="col">Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle admin-table-striped" style="color: white">
+                        <tr>
+                            <td class="col">--</td>
+                            <td class="col">09:12:35</td>
+                            <td class="col">C</td>
+                            <td class="col"> 2</td>
+                            <td class="col">5205,50</td>
+                        </tr>
+                        <tr>
+                            <td class="col">09:12:35</td>
+                            <td class="col">09:12:35</td>
+                            <td class="col">C</td>
+                            <td class="col"> 2</td>
+                            <td class="col">5205,50</td>
+                        </tr>
+                        <tr>
+                            <td class="col">09:12:35</td>
+                            <td class="col">09:12:35</td>
+                            <td class="col">C</td>
+                            <td class="col"> 2</td>
+                            <td class="col">5205,50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

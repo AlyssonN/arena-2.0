@@ -7,7 +7,8 @@ $arena-card-white-color: white !default;
 $background-color: #363636;
 $transparent-blue: rgba(0, 100, 173, 0.7);
 $sp-6: 6px;
-$arena-orange: #37ca69;
+$arena-orange: #DF8821;
+$arena-green: #37ca69;
 $arena-dark-blue: #105689;
 $arena-transparent-grey: rgba(138, 138, 138, 0.4);
 $arena-light-blue: rgba(30, 188, 197, 1);
@@ -34,6 +35,7 @@ $arena-grey: #74798C;
 
 $arena-colors: (
     "blue": #346dc5,
+    "green": $arena-green,
     "orange": $arena-orange,
     "light-blue": $arena-light-blue,
     "transparent-blue": $transparent-blue,
