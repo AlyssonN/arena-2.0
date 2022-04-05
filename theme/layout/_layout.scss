@@ -2,3 +2,26 @@
 @import "./header";
 // Menu
 @import "./menu";
+
+body * {
+    scrollbar-width: thin;
+    scrollbar-color: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+}
+
+body *::-webkit-scrollbar {
+    width: 5px;
+}
+
+body *::-webkit-scrollbar-track {
+    background: #0002;
+}
+
+body *::-webkit-scrollbar-thumb {
+    background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+    border-radius: 20px;
+}
+
+body *::-webkit-scrollbar-track-piece {
+    background-color: #0002;
+    border-radius: 20px;
+}
