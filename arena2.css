@@ -636,15 +636,15 @@ progress {
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(var(--bs-gutter-y) * -1);
-  margin-right: calc(var(--bs-gutter-x) * -.5);
-  margin-left: calc(var(--bs-gutter-x) * -.5);
+  margin-right: calc(var(--bs-gutter-x) * -0.5);
+  margin-left: calc(var(--bs-gutter-x) * -0.5);
 }
 .row > * {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * .5);
-  padding-left: calc(var(--bs-gutter-x) * .5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
 }
 
@@ -6106,15 +6106,15 @@ textarea.form-control-lg {
 }
 
 .ratio-4x3 {
-  --bs-aspect-ratio: calc(3 / 4 * 100%);
+  --bs-aspect-ratio: 75%;
 }
 
 .ratio-16x9 {
-  --bs-aspect-ratio: calc(9 / 16 * 100%);
+  --bs-aspect-ratio: 56.25%;
 }
 
 .ratio-21x9 {
-  --bs-aspect-ratio: calc(9 / 21 * 100%);
+  --bs-aspect-ratio: 42.8571428571%;
 }
 
 .fixed-top {
@@ -12107,6 +12107,10 @@ label {
   line-height: 15px;
 }
 
+nick-modal div {
+  background-color: black !important;
+}
+
 .arena-table tr:nth-child(odd) {
   background-color: #292929;
 }
@@ -12569,6 +12573,41 @@ button.beta-mx-28 {
 
 .background-orange-gradient {
   background: linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
+}
+
+.color-orange-gradient {
+  background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body * {
+  scrollbar-width: thin;
+  scrollbar-color: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+}
+
+body *::-webkit-scrollbar {
+  width: 5px;
+}
+
+body *::-webkit-scrollbar-track {
+  background: #0002;
+}
+
+body *::-webkit-scrollbar-thumb {
+  background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+  border-radius: 20px;
+}
+
+body *::-webkit-scrollbar-track-piece {
+  background-color: #0002;
+  border-radius: 20px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=arena2.css.map */

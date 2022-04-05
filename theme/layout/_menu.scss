@@ -28,3 +28,9 @@
 .background-orange-gradient {
     background: linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
 }
+
+.color-orange-gradient {
+    background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

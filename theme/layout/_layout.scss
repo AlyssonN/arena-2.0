@@ -1,7 +1,6 @@
 // Header
 @import "./header";
 // Menu
-<<<<<<< HEAD
 @import "./menu";
 
 body * {
@@ -26,6 +25,9 @@ body *::-webkit-scrollbar-track-piece {
     background-color: #0002;
     border-radius: 20px;
 }
-=======
-@import "./menu";
->>>>>>> 83bc0cdac349f030ec477485ff214317a5bc41f1
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

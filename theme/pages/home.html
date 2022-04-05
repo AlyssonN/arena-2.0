@@ -1,0 +1,910 @@
+<style>
+    nick-modal div {
+        background-color: black !important
+    }
+
+    #scroll {
+        display: flex;
+    }
+
+    #menu-mobile {
+        display: none;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(-400px, 0, 0);
+            /* The image width */
+        }
+    }
+
+    @media (min-width:961px) {
+        .arena-trader-wallet-container th {
+            width: unset !important;
+        }
+    }
+
+    body * {
+        scrollbar-width: thin;
+        scrollbar-color: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+    }
+
+    body *::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    body *::-webkit-scrollbar-track {
+        background: #0002;
+    }
+
+    body *::-webkit-scrollbar-thumb {
+        background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+        border-radius: 20px;
+    }
+
+    body *::-webkit-scrollbar-track-piece {
+        background-color: #0002;
+        border-radius: 20px;
+    }
+</style>
+
+<link
+    href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+    rel="stylesheet">
+<link href="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/css/arena2.css" rel="stylesheet">
+<!-- ANCHOR Cards topo -->
+
+<section>
+    <div class="d-sm-flex">
+        <!-- ANCHOR Card -->
+        <div class="card-gradient p-3 text-center mb-2 mb-sm-0 me-sm-2 ww-md-50">
+            <img style="max-width: 100%;" src="../../assets/arenaxtrader.svg" alt="">
+            <p class="text-lg-start">Escolha o torneio com as regras e condições que quiser e teste suas habilidades na
+                Arena! TraderEvolution! Você pode acessá-la direto pelo navegador, após confirmar a inscrição em
+                qualquer torneio!</p>
+            <button class="btn-arena-blue border-0 rounded px-4">Saiba Mais</button>
+        </div>
+        <!-- ANCHOR Card 2 -->
+        <div class="card-gradient p-3 text-center ww-md-50">
+            <h5 class="fw-bold">Conheça as modalidades de torneio</h5>
+            <p>Clique e veja as regras e a divisão de prêmio de cada modalidade da Arena</p>
+            <!-- ANCHOR Sub Cards -->
+            <div class="d-flex justify-content-center">
+                <div class="sub-card" (click)="openModal(allWinModal)">
+                    <div class="letter-card text-fw">A</div>
+                    <span class="fw-bold">All Win</span>
+                </div>
+
+                <div class="sub-card" (click)="openModal(highPrizeModal)">
+                    <div class="letter-card arena-light-blue-background">H</div>
+                    <span class="fw-bold">High Prize</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-none d-sm-block">
+        <div class="d-flex justify-content-end mt-3 px-3 align-items-center">
+            <div class="letter-card-small">A</div>
+            <span class="mx-1 arena-orange-text">~40% premiados</span>
+            <div class="letter-card-small arena-light-blue-background">H</div>
+            <span class="mx-1 arena-light-blue-text">~15% premiados</span>
+        </div>
+    </div>
+</section>
+<!-- ANCHOR Portal de torneios -->
+<section>
+    <h5 class="d-flex justify-content-center fw-bold pt-3">Portal de torneios</h5>
+    <div class="d-flex justify-content-between p-3">
+        <h6 class="fw-bold">Em andamento</h6>
+        <a routerLink="/tournament/progress" class="text-decoration-none fw-bolder arena-orange-gradient-text">Ver
+            todos</a>
+    </div>
+
+    <!-- ANCHOR Torneios em andamento -->
+
+    <div class="d-flex tournament-card-container overflow-auto">
+        <div class="card-item me-3 ww-sm-auto w-100"
+            *ngFor="let item of listAux | nickListSortByPipe: ['-index'];let i = index;">
+            <!-- ANCHOR Card Tipo/participantes -->
+            <div class="d-flex flex-column ms-3 card-tournament mb-2" *ngIf="i<viewAmount1 && !item.full && item?.name">
+                <div class="d-flex w-100">
+                    <div class="t-cripto t-header rounded-top d-flex justify-content-center">
+                        <span *ngIf="item?.type == 0 ">Dólar</span>
+                        <span *ngIf="item?.type == 1 ">Índice</span>
+                    </div>
+                </div>
+                <!-- ANCHOR Card Info Torneio -->
+                <div class="card-tournament-info">
+                    <div class="d-flex">
+                        <h5 class="me-2 ellipsis">{{item?.name}}</h5>
+                        <div class="ms-auto d-flex">
+                            <i class="material-icons me-1">group</i>
+                            <span>{{item.count}}/{{item?.participantLimit}}</span>
+                        </div>
+                    </div>
+                    <p>Liga: <b>{{item?.owner?.firstName+' '+item?.owner?.lastName}}</b></p>
+                    <!-- ANCHOR Flex Icones -->
+                    <div class="d-flex w-100"
+                        style="justify-content: space-around; padding: 14px 0px; border-top: 1px solid #74798C; border-bottom: 1px solid #74798C;">
+                        <div class="flex-column d-flex align-items-center">
+                            <span>Premio Máx</span>
+                            <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==0">A</div>
+                            <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==1">H</div>
+                            <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==2">B</div>
+                            <b *ngIf="item?.awardType != 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'BRL'}}*</b>
+                            <b *ngIf="item?.awardType == 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'':'T$'}}*</b>
+                            <b *ngIf="item?.prizeAmount == 0 && item?.awardType != 2">--</b>
+                            <b *ngIf="item?.prizeAmount == 0 && item?.awardType == 2">--</b>
+                            <b *ngIf="item?.awardType == 2" >paid</b>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-center">
+                            <span>Duração</span>
+                            <i class="material-icons card-icon">timer</i>
+                            <b *ngIf="item?.durationH <= 24" class="text-nowrap">{{item?.durationH>=10?item?.durationH:'0'+item?.durationH}}Hs. {{item?.durationM>=10?item?.durationM:'0'+item?.durationM}}m.</b>
+                            <b *ngIf="item?.durationH > 24" class="text-nowrap">{{item?.durationDay>=10?item?.durationDay:'0'+item?.durationDay}} Ds. {{item?.hoursDay>=10?item?.hoursDay:'0'+item?.hoursDay}}Hs.</b>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-center">
+                            <span>Participantes</span>
+                            <i class="material-icons card-icon">group</i>
+                            <b>{{item?.participantLimit}}</b>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-center">
+                            <span>Saldo ficticio</span>
+                            <i class="material-icons card-icon">account_balance_wallet</i>
+                            <b>{{item?.openingBalance | currency: 'BRL'}}</b>
+                        </div>
+                    </div>
+
+                    <span class="d-flex justify-content-center my-3 fw-bold arena-orange-text">Tabela de
+                        premiação</span>
+                    <!-- ANCHOR Flex Valor/Botões -->
+                    <div class="d-flex justify-content-between">
+                        <!-- ANCHOR Valor -->
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <p>Inscrição</p>
+                            <!-- ANCHOR Flex icone moeda/valor -->
+                            <div class="mb-3 d-flex">
+                                <img class="me-1" src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/monetization_on.png" alt="">
+                                <b *ngIf="item?.inputAmount != 0">{{item?.inputAmount | currency:'BRL'}}</b>
+                                <b *ngIf="item?.inputAmount == 0">Gratuito</b>
+                            </div>
+                        </div>
+                        <!-- ANCHOR Flex Botões -->
+                        <div class="d-flex">
+                            <button class="transparent-grey-button with-icon" [routerLink]="['/tournament/detail/', item?.id]"><i class="material-icons">add</i>
+                                Detalhes</button>
+                            <button class="subscribe-button" *ngIf="!item.inGameNow" (click)="openModal(confirmModal)" [disabled]="item.count>=item.participantLimit">Inscrever</button>
+                            <button class="subscribe-button" *ngIf="item.inGameNow" (click)="openModal(confirmModal)" [disabled]="item.count>=item.participantLimit || item.inGameNow">Inscrito</button>
+                        </div>
+
+                        <ng-template #confirmModal>
+                            <div class="modal-header text-center" style="display: block">
+                                <div>
+                                    <h1 class="beta-mb-12 text-center fs-5">Confirmar inscrição</h1>
+                                    <br>
+                                    <span class="text-center" *ngIf="item?.inputAmount != 0">Confirmar a inscrição em <b style="color: #F08D19">{{item?.name}}</b> no valor de {{item?.inputAmount | currency:'BRL'}}?</span>
+                                    <span class="text-center" *ngIf="item?.inputAmount == 0">Confirmar a inscrição em <b style="color: #F08D19">{{item?.name}}</b>?</span>
+                                    <br>
+                                    <br>
+                                    <div *ngIf="item?.inputAmount != 0 || item?.name=='TESTE'">
+                                        <span>Após confirmar, você poderá acessar o torneio pela página inicial ou pela aba <b style="color: #F08D19">Arena</b>.</span>
+                                        <nick-input *ngIf="item?.name=='TESTE'"
+                                            [nickCrudField]="tournamentForm.password" placeholder="Digite sua senha"
+                                            type="password"></nick-input>
+                                        <br>
+                                        <span> Caso o valor de entrada seja maior que o valor disponível na sua carteira de cupons, será debitado o restante da sua carteira digital.</span>
+                                        <br>
+                                        <label style="margin-bottom: auto; color: white; margin-right: 20px;"
+                                           class="pure-material-checkbox">
+                                        <nick-checkbox [nickCrudField]="form.useCoupon" [options]="optionsCheckbox" [style]="1"></nick-checkbox>
+
+                                    </label>
+                                    </div>
+
+                                    <div *ngIf="item?.inputAmount == 0">
+                                        <span class="text-center">Você pode acessar o torneio na aba "<b style="color: #F08D19">Arena</b>" no menu lateral.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="display: flex; justify-content: space-evenly;">
+                                <a (click)="closeModal()" style="cursor: pointer;" class="text-decoration-none"
+                                    style="color: #F08D19">Cancelar </a>
+                                <button class="btn-arena arena-orange-gradient-text bg-transparent arena-border p-2 rounded" (click)="closeModal()" (click)="participateTournament([noCreditAvailable, item, true])">Participar</button>
+                            </div>
+                        </ng-template>
+
+                    </div>
+                    <!-- ANCHOR Flex time inicio/fim -->
+                    <div class="justify-content-around d-flex flex-lg-row">
+                        <div class="me-2 d-flex text-nowrap align-items-center">
+                            <i class="material-icons me-2">access_time</i>
+                            <span *ngIf="item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'dd/MM HH'}}:00</b></span>
+                            <span *ngIf="!item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'HH'}}:00</b></span>
+                        </div>
+
+                        <div class="d-flex text-nowrap align-items-center">
+                            <i class="material-icons me-2">access_time</i>
+                            <span *ngIf="item?.notToday" class="arena-light-grey-text">Término: <b>{{item?.endAt| date:'dd/MM HH'}}:00</b></span>
+                            <span *ngIf="!item?.notToday" class="arena-light-grey-text">Término: <b>{{item?.endAt| date:'HH'}}:00</b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!-- ANCHOR Proximos torneios -->
+<section *ngIf="listAux2.length > 0">
+    <div class="d-flex justify-content-between p-3">
+        <h6 class="fw-bold">Próximos torneios</h6>
+        <a class="text-decoration-none fw-bolder arena-orange-gradient-text" routerLink="/tournament/upcoming">Ver
+            todos</a>
+    </div>
+
+
+    <div class="d-flex tournament-card-container" style="overflow-x: scroll">
+        <div class="card-item me-3 ww-sm-auto w-100"
+            *ngFor="let item of listAux2 | nickListSortByPipe: ['-index'];let i = index;">
+            <!-- ANCHOR Card Tipo/participantes -->
+            <div class="d-flex flex-column ms-3 card-tournament" *ngIf="i<viewAmount2 && !item.full && !item?.inGame">
+                <div class="d-flex w-100">
+                    <div class="t-cripto t-header rounded-top d-flex justify-content-center">
+                        <span *ngIf="item?.type == 0 ">Dólar</span>
+                        <span *ngIf="item?.type == 1 ">Índice</span>
+                    </div>
+                    <div class="t-action t-header rounded-top d-flex justify-content-center">
+                        <span>Ações - IBRX-100</span>
+                    </div>
+                </div>
+                <!-- ANCHOR Card Info Torneio -->
+                <div class="card-tournament-info">
+                    <div class="d-flex">
+                        <span class="me-2">{{item?.name}}</span>
+                        <div class="ms-auto d-flex">
+                            <i class="material-icons me-1">group</i>
+                            <span>{{item.count}}/{{item?.participantLimit}}</span>
+                        </div>
+                    </div>
+                    <p>Liga: <b>{{item?.owner?.firstName+' '+item?.owner?.lastName}}</b></p>
+                    <!-- ANCHOR Flex Icones -->
+                    <div class="d-flex w-100"
+                        style="justify-content: space-around; padding: 14px 0px; border-top: 1px solid #74798C; border-bottom: 1px solid #74798C;">
+                        <div class="flex-column d-flex align-items-center">
+                            <span>Premio Máx</span>
+                            <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==0">A</div>
+                            <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==1">H</div>
+                            <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==2">P</div>
+                            <b *ngIf="item?.awardType != 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'BRL'}}*</b>
+                            <b *ngIf="item?.awardType == 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'':'T$'}}*</b>
+                            <b *ngIf="item?.prizeAmount == 0 && item?.awardType != 2">--</b>
+                            <b *ngIf="item?.prizeAmount == 0 && item?.awardType == 2">--</b>
+                            <b *ngIf="item?.awardType == 2" >paid</b>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-center">
+                            <span>Duração</span>
+                            <i class="material-icons card-icon">timer</i>
+                            <b *ngIf="item?.durationH <= 24">{{item?.durationH>=10?item?.durationH:'0'+item?.durationH}}Hs. {{item?.durationM>=10?item?.durationM:'0'+item?.durationM}}m.</b>
+                            <b *ngIf="item?.durationH > 24">{{item?.durationDay>=10?item?.durationDay:'0'+item?.durationDay}} Ds. {{item?.hoursDay>=10?item?.hoursDay:'0'+item?.hoursDay}}Hs.</b>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-center">
+                            <span>Participantes</span>
+                            <i class="material-icons card-icon">group</i>
+                            <b>{{item?.participantLimit}}</b>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-center">
+                            <span>Saldo ficticio</span>
+                            <i class="material-icons card-icon">account_balance_wallet</i>
+                            <b>{{item?.openingBalance | currency: 'BRL'}}</b>
+                        </div>
+                    </div>
+
+                    <span class="d-flex justify-content-center my-3 fw-bold arena-orange-text">Tabela de
+                        premiação</span>
+                    <!-- ANCHOR Flex Valor/Botões -->
+                    <div class="d-flex justify-content-between">
+                        <!-- ANCHOR Valor -->
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <p>Inscrição</p>
+                            <!-- ANCHOR Flex icone moeda/valor -->
+                            <div class="mb-3 d-flex">
+                                <img class="me-1" src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/monetization_on.png" alt="">
+                                <b *ngIf="item?.inputAmount != 0">{{item?.inputAmount | currency:'BRL'}}</b>
+                                <b *ngIf="item?.inputAmount == 0">Gratuito</b>
+                            </div>
+                        </div>
+                        <!-- ANCHOR Flex Botões -->
+                        <div class="d-flex">
+                            <button  [routerLink]="['/tournament/detail/', item?.id]" class="transparent-grey-button with-icon"><i class="material-icons">add</i>
+                                Detalhes</button>
+                            <button class="subscribe-button" *ngIf="!item.inGameNow" [disabled]="item.count>=item.participantLimit" (click)="openModal(confirmModal2)">Inscrever</button>
+                            <button *ngIf="item.inGameNow" [disabled]="item.count>=item.participantLimit || item.inGameNow" class="subscribe-button">Inscrito</button>
+                        </div>
+                    </div>
+
+                    <ng-template #confirmModal2>
+                        <div class="modal-header text-center" style="display: block">
+                            <div>
+                                <h1 class="beta-mb-12 fs-5 text-center ">Confirmar inscrição</h1>
+                                <br>
+                                <span class="text-center" *ngIf="item?.inputAmount != 0">Confirmar a inscrição em <b style="color: #F08D19">{{item?.name}}</b> no valor de {{item?.inputAmount | currency:'BRL'}}?</span>
+                                <span class="text-center" *ngIf="item?.inputAmount == 0">Confirmar a inscrição em <b style="color: #F08D19">{{item?.name}}</b>?</span>
+                                <br>
+                                <br *ngIf="item?.inputAmount != 0">
+                                <span *ngIf="item?.inputAmount != 0">Após confirmar, você poderá acessar o torneio pela página inicial ou pela aba <b style="color: #F08D19">Arena</b>.</span>
+                                <span class="text-center" *ngIf="item?.inputAmount == 0">Após confirmar, você poderá acessar o torneio na aba "<b style="color: #F08D19">Arena</b>" no menu lateral.</span>
+                                <span *ngIf="item?.inputAmount != 0">Você também pode usar seus cupons disponíveis para participar do torneio. </span>
+                                <br *ngIf="item?.inputAmount != 0">
+                                <span *ngIf="item?.inputAmount != 0"> Caso o valor de entrada seja maior que o valor disponível na sua carteira de cupons, será debitado o restante da sua carteira digital.</span>
+                                <br *ngIf="item?.inputAmount != 0">
+                                <label style="margin-bottom: auto; color: white; margin-right: 20px;"
+                                       class="pure-material-checkbox" *ngIf="item?.inputAmount != 0">
+                                    <input type="checkbox">
+                                    <nick-checkbox [nickCrudField]="form.useCoupon" [options]="optionsCheckbox" [style]="1"></nick-checkbox>
+
+                                </label>
+                            </div>
+                        </div>
+                        <div style="text-align: left;width: 36rem;" class="modal-body">
+                        </div>
+                        <div class="modal-footer" style="display: flex; justify-content: space-evenly;">
+                            <a (click)="closeModal()" style="cursor: pointer;" class="cancelTxt" style="color: #F08D19">
+                                Cancelar </a>
+                            <button style="width: 50%" (click)="closeModal()" (click)="participateTournament([noCreditAvailable, item, false])">Participar</button>
+                        </div>
+                    </ng-template>
+
+                    <!-- ANCHOR Flex time inicio/fim -->
+                    <div class="justify-content-around d-flex flex-lg-row">
+                        <div class="me-2 d-flex align-items-center">
+                            <i class="material-icons me-2">access_time</i>
+                            <span *ngIf="item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'dd/MM HH'}}:00</b></span>
+                            <span *ngIf="!item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'HH'}}:00</b></span>
+                        </div>
+
+                        <div class="d-flex align-items-center">
+                            <i class="material-icons me-2">access_time</i>
+                            <span *ngIf="item?.notToday" class="arena-light-grey-text">Término: <b>{{item?.endAt| date:'dd/MM HH'}}:00</b></span>
+                            <span *ngIf="!item?.notToday" class="arena-light-grey-text">Término: <b>{{item?.endAt| date:'HH'}}:00</b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ANCHOR Todos os torneios -->
+<section>
+
+    <h6 class="fw-bold text-size-xxl text-center mt-3">Todos os torneios</h6>
+    <div class="d-flex justify-content-end p-3">
+        <!-- <div class="d-flex text-size-s">
+            <button class="btn-arena-grey with-icon rounded border-0 px-2 me-1">Ordenar<i
+                    style="transform: rotate(90deg);" class="material-icons r">compare_arrows</i></button>
+            <button class="btn-arena-grey with-icon rounded border-0 px-2">Filtros<i
+                    class="material-icons">filter_alt</i></button>
+        </div> -->
+    </div>
+    <!-- ANCHOR Card Todos torneios -->
+    <div class="d-flex d-lg-none flex-column align-items-center tournament-card-container">
+        <div class="card-item mb-2 align-self-center ww-sm-75 w-100" *ngFor="let item of listAux2">
+            <!-- ANCHOR Card Tipo/participantes -->
+            <div *ngIf="(seeMoreItem?.id != item.id) else cardTemplate"
+                class="d-flex flex-column ms-3 card-tournament my-3 flex-column">
+                <div class="d-flex w-100">
+                    <div class="t-cripto t-header rounded-top d-flex justify-content-center">
+                        <span *ngIf="item?.type == 0 ">Dólar</span>
+                        <span *ngIf="item?.type == 1 ">Índice</span>
+                        <div class="ms-auto d-flex me-2 align-items-center">
+                            <i class="material-icons me-1">group</i>
+                            <span>{{item.count}}/{{item?.participantLimit}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ANCHOR Card Info Torneio -->
+                <div class="card-tournament-info">
+                    <div class="d-flex mb-3" style="border-bottom: 1px solid #74798C;">
+                        <div class="w-50">
+                            <div>
+                                <span>{{item?.name}}</span>
+                            </div>
+                            <p>Liga: <b>{{item?.owner?.firstName+' '+item?.owner?.lastName}}</b></p>
+                        </div>
+                        <!-- ANCHOR Flex Icones -->
+                        <div class="d-flex w-100 justify-content-between mb-3">
+                            <div class="flex-column d-flex align-items-center me-2" *ngFor="let item of listAux2">
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==0">A
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==1">H
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==2">P
+                                </div>
+                                <b *ngIf="item?.awardType != 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'BRL'}}*</b>
+                                <b *ngIf="item?.awardType == 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'':'T$'}}*</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType != 2">--</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType == 2">--</b>
+                                <b *ngIf="item?.awardType == 2" >paid</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon-small">timer</i>
+                                <b *ngIf="item?.durationH <= 24">{{item?.durationH>=10?item?.durationH:'0'+item?.durationH}}Hs. {{item?.durationM>=10?item?.durationM:'0'+item?.durationM}}m.</b>
+                                <b *ngIf="item?.durationH > 24">{{item?.durationDay>=10?item?.durationDay:'0'+item?.durationDay}} Ds. {{item?.hoursDay>=10?item?.hoursDay:'0'+item?.hoursDay}}Hs.</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon-small">group</i>
+                                <b>{{item?.participantLimit}}</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <img src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/monetization_on.png" style="margin: 8px 0;" alt="">
+                                <b *ngIf="item?.inputAmount != 0">{{item?.inputAmount | currency:'BRL'}}</b>
+                                <b *ngIf="item?.inputAmount == 0">Gratuito</b>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ANCHOR Flex Valor/Botões -->
+                    <div class="d-flex justify-content-between">
+                    </div>
+                    <!-- ANCHOR Flex time inicio/fim -->
+                    <div class="justify-content-between d-flex">
+                        <div class="me-1 d-flex align-items-center">
+                            <i class="material-icons me-2">access_time</i>
+                            <span *ngIf="item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'dd/MM HH'}}:00</b></span>
+                            <span *ngIf="!item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'HH'}}:00</b></span>
+                        </div>
+
+                        <div class="ms-1 d-flex">
+                            <button (click)="seeMoreItem = item" class="btn-arena-grey with-icon rounded-3 pe-3 border-0 px-2"><i
+                                    class="material-icons">add</i>Ver mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-item mb-2 align-self-center ww-sm-75 w-100" *ngFor="let item of listAux">
+            <!-- ANCHOR Card Tipo/participantes -->
+            <div *ngIf="(seeMoreItem?.id != item.id) else cardTemplate" class="d-flex flex-column ms-3 card-tournament my-3 flex-column">
+                <div class="d-flex w-100">
+                    <div class="t-cripto t-header rounded-top d-flex justify-content-center">
+                        <span *ngIf="item?.type == 0 ">Dólar</span>
+                        <span *ngIf="item?.type == 1 ">Índice</span>
+                        <div class="ms-auto d-flex me-2 align-items-center">
+                            <i class="material-icons me-1">group</i>
+                            <span>{{item.count}}/{{item?.participantLimit}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ANCHOR Card Info Torneio -->
+                <div class="card-tournament-info">
+                    <div class="d-flex mb-3" style="border-bottom: 1px solid #74798C;">
+                        <div class="w-50">
+                            <div>
+                                <span>{{item?.name}}</span>
+                            </div>
+                            <p>Liga: <b>{{item?.owner?.firstName+' '+item?.owner?.lastName}}</b></p>
+                        </div>
+                        <!-- ANCHOR Flex Icones -->
+                        <div class="d-flex w-100 justify-content-between mb-3">
+                            <div class="flex-column d-flex align-items-center me-2" *ngFor="let item of listAux2">
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==0">A
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==1">H
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==2">P
+                                </div>
+                                <b *ngIf="item?.awardType != 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'BRL'}}*</b>
+                                <b *ngIf="item?.awardType == 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'':'T$'}}*</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType != 2">--</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType == 2">--</b>
+                                <b *ngIf="item?.awardType == 2" >paid</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon-small">timer</i>
+                                <b *ngIf="item?.durationH <= 24">{{item?.durationH>=10?item?.durationH:'0'+item?.durationH}}Hs. {{item?.durationM>=10?item?.durationM:'0'+item?.durationM}}m.</b>
+                                <b *ngIf="item?.durationH > 24">{{item?.durationDay>=10?item?.durationDay:'0'+item?.durationDay}} Ds. {{item?.hoursDay>=10?item?.hoursDay:'0'+item?.hoursDay}}Hs.</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon-small">group</i>
+                                <b>{{item?.participantLimit}}</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <img src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/monetization_on.png" style="margin: 8px 0;" alt="">
+                                <b *ngIf="item?.inputAmount != 0">{{item?.inputAmount | currency:'BRL'}}</b>
+                                <b *ngIf="item?.inputAmount == 0">Gratuito</b>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ANCHOR Flex Valor/Botões -->
+                    <div class="d-flex justify-content-between">
+                    </div>
+                    <!-- ANCHOR Flex time inicio/fim -->
+                    <div class="justify-content-between d-flex">
+                        <div class="me-1 d-flex align-items-center">
+                            <i class="material-icons me-2">access_time</i>
+                            <span *ngIf="item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'dd/MM HH'}}:00</b></span>
+                            <span *ngIf="!item?.notToday" class="arena-light-grey-text">Início: <b>{{item?.startAt| date:'HH'}}:00</b></span>
+                        </div>
+
+                        <div class="ms-1 d-flex">
+                            <button (click)="seeMoreItem = item" class="btn-arena-grey with-icon rounded-3 pe-3 border-0 px-2"><i
+                                    class="material-icons">add</i>Ver mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Card PC -->
+    <div class="pc-card-header d-flex mb-3 d-none d-lg-block"
+        style="bottom: -28.8rem;text-align: -webkit-center;border-bottom: 1px solid #6F6F6F;">
+        <div class="header-item-info d-flex mb-3 justify-content-around">
+            <span class="fw-bold">Duração</span>
+            <span class="fw-bold">Entrada</span>
+            <span class="fw-bold">Premiação</span>
+            <span class="fw-bold">Participantes</span>
+        </div>
+    </div>
+
+    <!-- ANCHOR Card Todos torneios PC -->
+    <div class="d-flex flex-column align-items-center d-none d-lg-block tournament-card-container">
+        <div class="card-item mb-2 align-self-center w-100">
+            <div class="d-flex ms-3 card-tournament flex-column align-items-center" style="border: 0 !important">
+                <!-- ANCHOR Card Info Torneio -->
+                <div class="card-tournament-info ww-90 ww-xl-100 d-flex mb-2 justify-content-center"
+                    *ngFor="let item of listAux2">
+                    <div class="d-flex ww-90 ww-90 ww-xl-100">
+                        <div class="w-50 mb-2">
+                            <div>
+                                <span>{{item?.name}}</span>
+                            </div>
+                            <p>Liga: <b>{{item?.owner?.firstName+' '+item?.owner?.lastName}}</b></p>
+                            <!-- Tags -->
+                            <div class="d-flex">
+                                <span *ngIf="item?.type == 0 ">Dólar</span>
+                                <span *ngIf="item?.type == 1 ">Índice</span>
+                            </div>
+                        </div>
+                        <!-- ANCHOR Flex Icones -->
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon text-nowrap">timer</i>
+                                <b *ngIf="item?.durationH <= 24">{{item?.durationH>=10?item?.durationH:'0'+item?.durationH}}Hs. {{item?.durationM>=10?item?.durationM:'0'+item?.durationM}}m.</b>
+                                <b *ngIf="item?.durationH > 24">{{item?.durationDay>=10?item?.durationDay:'0'+item?.durationDay}} Ds. {{item?.hoursDay>=10?item?.hoursDay:'0'+item?.hoursDay}}Hs.</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon">monetization_on</i>
+                                <b *ngIf="item?.inputAmount != 0">{{item?.inputAmount | currency:'BRL'}}</b>
+                                <b *ngIf="item?.inputAmount == 0">Gratuito</b>
+                            </div>
+
+                            <div class="flex-column d-flex align-items-center me-2">
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==0">A
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==1">H
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==2">P
+                                </div>
+                                <b *ngIf="item?.awardType != 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'BRL'}}*</b>
+                                <b *ngIf="item?.awardType == 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'':'T$'}}*</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType != 2">--</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType == 2">--</b>
+                                <b *ngIf="item?.awardType == 2" >paid</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon">group</i>
+                                <b>{{item.count}}/{{item?.participantLimit}}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Info + botão -->
+                    <div class="d-flex pc-card-info justify-content-end">
+                        <div class=" me-5 d-flex flex-column ps-5 align-self-center"
+                            style="border-left: 1px solid #6F6F6F;">
+                            <span><b>Saldo inicial: </b>{{item?.openingBalance | currency: 'BRL'}}</span>
+                            <span><b>Exposição Máx: </b>{{item?.contractLimit}} contratos</span>
+                            <span><b>Término: </b>{{item?.endAt | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="d-flex align-items-center ms-2">
+                            <button [routerLink]="['/tournament/detail/', item?.id]" class="arena-orange-gradient-background rounded-3 border-0 p-4" style="color: white; width: max-content;">Ver mais</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-tournament-info ww-90 ww-xl-100 m-auto d-flex mb-2" *ngFor="let item of listAux">
+                    <div class="d-flex w-100">
+                        <div class="w-50 mb-2">
+                            <div>
+                                <span>{{item?.name}}</span>
+                            </div>
+                            <p>Liga: <b>{{item?.owner?.firstName+' '+item?.owner?.lastName}}</b></p>
+                            <!-- Tags -->
+                            <div class="d-flex">
+                                <span *ngIf="item?.type == 0 ">Dólar</span>
+                                <span *ngIf="item?.type == 1 ">Índice</span>
+                            </div>
+                        </div>
+                        <!-- ANCHOR Flex Icones -->
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon text-nowrap">timer</i>
+                                <b *ngIf="item?.durationH <= 24">{{item?.durationH>=10?item?.durationH:'0'+item?.durationH}}Hs. {{item?.durationM>=10?item?.durationM:'0'+item?.durationM}}m.</b>
+                                <b *ngIf="item?.durationH > 24">{{item?.durationDay>=10?item?.durationDay:'0'+item?.durationDay}} Ds. {{item?.hoursDay>=10?item?.hoursDay:'0'+item?.hoursDay}}Hs.</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon">monetization_on</i>
+                                <b *ngIf="item?.inputAmount != 0">{{item?.inputAmount | currency:'BRL'}}</b>
+                                <b *ngIf="item?.inputAmount == 0">Gratuito</b>
+                            </div>
+
+                            <div class="flex-column d-flex align-items-center me-2">
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==0">A
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==1">H
+                                </div>
+                                <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="item?.awardType==2">P
+                                </div>
+                                <b *ngIf="item?.awardType != 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'BRL'}}*</b>
+                                <b *ngIf="item?.awardType == 2 && item?.prizeAmount != 0">{{item?.prizeAmount | currency:'':'T$'}}*</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType != 2">--</b>
+                                <b *ngIf="item?.prizeAmount == 0 && item?.awardType == 2">--</b>
+                                <b *ngIf="item?.awardType == 2" >paid</b>
+                            </div>
+
+                            <div class="d-flex flex-column align-items-center me-2">
+                                <i class="material-icons card-icon">group</i>
+                                <b>{{item.count}}/{{item?.participantLimit}}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Info + botão -->
+                    <div class="d-flex pc-card-info justify-content-end">
+                        <div class=" me-5 d-flex flex-column ps-5 align-self-center"
+                            style="border-left: 1px solid #6F6F6F;">
+                            <span><b>Saldo inicial: </b>{{item?.openingBalance | currency: 'BRL'}}</span>
+                            <span><b>Exposição Máx: </b>{{item?.contractLimit}} contratos</span>
+                            <span><b>Término: </b>{{item?.endAt | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="d-flex align-items-center ms-2">
+                            <button [routerLink]="['/tournament/detail/', item?.id]" class="arena-orange-gradient-background rounded-3 border-0 p-4" style="color: white; width: max-content;">Ver mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <section>
+        <ng-template #allWinModal>
+            <div>
+                <span (click)="closeModal()" class="material-icons close-btn cursor-pointer" style="float: right">clear</span>
+                <h1 class="beta-mb-12 fs-5 text-center">All Win</h1>
+                <br>
+            </div>
+            <div class="text-start">
+                <span>
+                Em todos os torneios da Arena o objetivo é o mesmo: Obter a maior rentabilidade até o
+                final do prazo. Todos os participantes começam com o mesmo saldo fictício para operar,
+                e podem realizar compras e vendas do ativo escolhido no torneio da forma que quiser.
+            </span>
+                <br>
+                <span>
+                Nos torneios All Win e High Prize, todos os participantes competem em conjunto e ao
+                mesmo tempo, e o que difere as duas modalidades é somente a quantidade de
+                participantes que é premiada ao final.
+            </span>
+                <br>
+                <span>
+                Ao final do torneio All Win, aproximadamente 40% dos participantes são premiados, com
+                prêmios de até 5x o valor da inscrição. Ou seja, em um torneio de 100 participantes, os
+                primeiros 40 serão premiados, em um torneio de 50 participantes, os primeiros 20 e assim
+                por diante. Você pode conferir a tabela completa de premiação nos detalhes do torneio.
+            </span>
+                <br>
+                <span>
+                O fundo de prêmios é composto pelo valor das inscrições pagas pelos participantes e o
+                prêmio mostrado no card principal do torneio é o prêmio máximo, considerando que o
+                torneio atinja sua lotação máxima. Caso participem menos pessoas, o fundo de prêmios é
+                dividido proporcionalmente aos vencedores, mas sempre mantendo o percentual de ~40%
+                premiados, de acordo com a tabela completa de premiação.
+            </span>
+                <br>
+            </div>
+        </ng-template>
+
+        <ng-template #highPrizeModal>
+            <div>
+                <span (click)="closeModal()" class="material-icons close-btn cursor-pointer" style="float: right">clear</span>
+                <h1 class="beta-mb-12 fs-5 text-center">High Prize</h1>
+                <br>
+            </div>
+            <div class="text-start">
+                <span>
+                Em todos os torneios da Arena o objetivo é o mesmo: Obter a maior rentabilidade até o
+                final do prazo. Todos os participantes começam com o mesmo saldo fictício para operar, e
+                podem realizar compras e vendas do ativo escolhido no torneio da forma que quiser.
+            </span>
+                <br>
+                <span>
+                Nos torneios All Win e High Prize, todos os participantes competem em conjunto e ao
+                mesmo tempo, e o que difere as duas modalidades é somente a quantidade de
+                participantes que é premiada ao final.
+            </span>
+                <br>
+                <span>
+                Ao final do torneio High Prize, aproximadamente 15% dos participantes são premiados,
+                com prêmios de até 5x o valor da inscrição. Ou seja, em um torneio de 100 participantes,
+                os primeiros 40 serão premiados, em um torneio de 50 participantes, os primeiros 20 e
+                assim por diante. Você pode conferir a tabela completa de premiação nos detalhes do
+                torneio.
+            </span>
+                <br>
+                <span>
+                O fundo de prêmios é composto pelo valor das inscrições pagas pelos participantes, e o
+                prêmio mostrado no card principal do torneio é o prêmio máximo, considerando que o
+                torneio atinja sua lotação máxima. Caso participem menos pessoas, o fundo de prêmios é
+                dividido proporcionalmente aos vencedores, mas sempre mantendo o percentual de ~15%
+                premiados, de acordo com a tabela completa de premiação.
+            </span>
+                <br>
+            </div>
+        </ng-template>
+    </section>
+
+</section>
+
+<!-- Templates -->
+
+<ng-template #cardTemplate>
+    <div class="card-item me-3 ww-sm-auto w-100">
+        <!-- ANCHOR Card Tipo/participantes -->
+        <div class="d-flex flex-column ms-3 card-tournament">
+            <div class="d-flex w-100">
+                <div class="t-cripto t-header rounded-top d-flex justify-content-center">
+                    <span *ngIf="seeMoreItem?.type == 0 ">Dólar</span>
+                    <span *ngIf="seeMoreItem?.type == 1 ">Índice</span>
+                </div>
+            </div>
+            <!-- ANCHOR Card Info Torneio -->
+            <div class="card-tournament-info">
+                <div class="d-flex">
+                    <h5 class="me-2">{{seeMoreItem?.name}}</h5>
+                    <div class="ms-auto d-flex">
+                        <i class="material-icons me-1">group</i>
+                        <span>{{seeMoreItem.count}}/{{seeMoreItem?.participantLimit}}</span>
+                    </div>
+                </div>
+                <p>Liga: <b>{{seeMoreItem?.owner?.firstName+' '+seeMoreItem?.owner?.lastName}}</b></p>
+                <!-- ANCHOR Flex Icones -->
+                <div class="d-flex w-100" style="justify-content: space-around; padding: 14px 0px; border-top: 1px solid #74798C; border-bottom: 1px solid #74798C;">
+                    <div class="flex-column d-flex align-seeMoreItems-center">
+                        <span>Premio Máx</span>
+                        <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="seeMoreItem?.awardType==0">A</div>
+                        <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="seeMoreItem?.awardType==1">H</div>
+                        <div style="margin: 8px 0px;" class="letter-card-small" *ngIf="seeMoreItem?.awardType==2">P</div>
+                        <b *ngIf="seeMoreItem?.awardType != 2 && seeMoreItem?.prizeAmount != 0">{{seeMoreItem?.prizeAmount | currency:'BRL'}}*</b>
+                        <b *ngIf="seeMoreItem?.awardType == 2 && seeMoreItem?.prizeAmount != 0">{{seeMoreItem?.prizeAmount | currency:'':'T$'}}*</b>
+                        <b *ngIf="seeMoreItem?.prizeAmount == 0 && seeMoreItem?.awardType != 2">--</b>
+                        <b *ngIf="seeMoreItem?.prizeAmount == 0 && seeMoreItem?.awardType == 2">--</b>
+                        <b *ngIf="seeMoreItem?.awardType == 2">paid</b>
+                    </div>
+
+                    <div class="d-flex flex-column align-seeMoreItems-center">
+                        <span>Duração</span>
+                        <i class="material-icons card-icon">timer</i>
+                        <b *ngIf="seeMoreItem?.durationH <= 24" class="text-nowrap">{{seeMoreItem?.durationH>=10?seeMoreItem?.durationH:'0'+seeMoreItem?.durationH}}Hs. {{seeMoreItem?.durationM>=10?seeMoreItem?.durationM:'0'+seeMoreItem?.durationM}}m.</b>
+                        <b *ngIf="seeMoreItem?.durationH > 24" class="text-nowrap">{{seeMoreItem?.durationDay>=10?seeMoreItem?.durationDay:'0'+seeMoreItem?.durationDay}} Ds. {{seeMoreItem?.hoursDay>=10?seeMoreItem?.hoursDay:'0'+seeMoreItem?.hoursDay}}Hs.</b>
+                    </div>
+
+                    <div class="d-flex flex-column align-seeMoreItems-center">
+                        <span>Participantes</span>
+                        <i class="material-icons card-icon">group</i>
+                        <b>{{seeMoreItem?.participantLimit}}</b>
+                    </div>
+
+                    <div class="d-flex flex-column align-seeMoreItems-center">
+                        <span>Saldo ficticio</span>
+                        <i class="material-icons card-icon">account_balance_wallet</i>
+                        <b>{{seeMoreItem?.openingBalance | currency: 'BRL'}}</b>
+                    </div>
+                </div>
+
+                <span class="d-flex justify-content-center my-3 fw-bold arena-orange-text">Tabela de
+                        premiação</span>
+                <!-- ANCHOR Flex Valor/Botões -->
+                <div class="d-flex justify-content-between">
+                    <!-- ANCHOR Valor -->
+                    <div class="d-flex flex-column align-seeMoreItems-center justify-content-center">
+                        <p>Inscrição</p>
+                        <!-- ANCHOR Flex icone moeda/valor -->
+                        <div class="mb-3 d-flex">
+                            <img class="me-1" src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/monetization_on.png" alt="">
+                            <b *ngIf="seeMoreItem?.inputAmount != 0">{{seeMoreItem?.inputAmount | currency:'BRL'}}</b>
+                            <b *ngIf="seeMoreItem?.inputAmount == 0">Gratuito</b>
+                        </div>
+                    </div>
+                    <!-- ANCHOR Flex Botões -->
+                    <div class="d-flex">
+                        <button class="transparent-grey-button with-icon" [routerLink]="['/tournament/detail/', seeMoreItem?.id]"><i class="material-icons">add</i>
+                            Detalhes</button>
+                        <button class="subscribe-button" *ngIf="!seeMoreItem.inGameNow" (click)="openModal(confirmModal)" [disabled]="seeMoreItem.count>=seeMoreItem.participantLimit">Inscrever</button>
+                        <button class="subscribe-button" *ngIf="seeMoreItem.inGameNow" (click)="openModal(confirmModal)" [disabled]="seeMoreItem.count>=seeMoreItem.participantLimit || seeMoreItem.inGameNow">Inscrito</button>
+                    </div>
+
+                    <ng-template #confirmModal>
+                        <div class="modal-header text-center" style="display: block">
+                            <div>
+                                <h1 class="beta-mb-12 text-center fs-5">Confirmar inscrição</h1>
+                                <br>
+                                <span class="text-center" *ngIf="seeMoreItem?.inputAmount != 0">Confirmar a inscrição em <b style="color: #F08D19">{{seeMoreItem?.name}}</b> no valor de {{seeMoreItem?.inputAmount | currency:'BRL'}}?</span>
+                                <span class="text-center" *ngIf="seeMoreItem?.inputAmount == 0">Confirmar a inscrição em <b style="color: #F08D19">{{seeMoreItem?.name}}</b>?</span>
+                                <br>
+                                <br>
+                                <div *ngIf="seeMoreItem?.inputAmount != 0 || seeMoreItem?.name=='TESTE'">
+                                    <span>Após confirmar, você poderá acessar o torneio pela página inicial ou pela aba <b style="color: #F08D19">Arena</b>.</span>
+                                    <nick-input *ngIf="seeMoreItem?.name=='TESTE'" [nickCrudField]="tournamentForm.password" placeholder="Digite sua senha" type="password"></nick-input>
+                                    <br>
+                                    <span> Caso o valor de entrada seja maior que o valor disponível na sua carteira de cupons, será debitado o restante da sua carteira digital.</span>
+                                    <br>
+                                    <label style="margin-bottom: auto; color: white; margin-right: 20px;" class="pure-material-checkbox">
+                                    <nick-checkbox [nickCrudField]="form.useCoupon" [options]="optionsCheckbox" [style]="1"></nick-checkbox>
+
+                                </label>
+                                </div>
+
+                                <div *ngIf="seeMoreItem?.inputAmount == 0">
+                                    <span class="text-center">Você pode acessar o torneio na aba "<b style="color: #F08D19">Arena</b>" no menu lateral.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="display: flex; justify-content: space-evenly;">
+                            <a (click)="closeModal()" style="cursor: pointer;" class="text-decoration-none" style="color: #F08D19">Cancelar </a>
+                            <button class="btn-arena arena-orange-gradient-text bg-transparent arena-border p-2 rounded" (click)="closeModal()" (click)="participateTournament([noCreditAvailable, seeMoreItem, true])">Participar</button>
+                        </div>
+                    </ng-template>
+
+                </div>
+                <!-- ANCHOR Flex time inicio/fim -->
+                <div class="justify-content-around d-flex flex-lg-row">
+                    <div class="me-2 d-flex text-nowrap align-seeMoreItems-center">
+                        <i class="material-icons me-2">access_time</i>
+                        <span *ngIf="seeMoreItem?.notToday" class="arena-light-grey-text">Início: <b>{{seeMoreItem?.startAt| date:'dd/MM HH'}}:00</b></span>
+                        <span *ngIf="!seeMoreItem?.notToday" class="arena-light-grey-text">Início: <b>{{seeMoreItem?.startAt| date:'HH'}}:00</b></span>
+                    </div>
+
+                    <div class="d-flex text-nowrap align-seeMoreItems-center">
+                        <i class="material-icons me-2">access_time</i>
+                        <span *ngIf="seeMoreItem?.notToday" class="arena-light-grey-text">Término: <b>{{seeMoreItem?.endAt| date:'dd/MM HH'}}:00</b></span>
+                        <span *ngIf="!seeMoreItem?.notToday" class="arena-light-grey-text">Término: <b>{{seeMoreItem?.endAt| date:'HH'}}:00</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</ng-template>
