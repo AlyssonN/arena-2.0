@@ -26,6 +26,22 @@
     background-color: $transparent-blue;
 }
 
+.background-yellow {
+    background: #fac256;
+}
+
+.background-green {
+    background: #37ca69;
+}
+
+.color-red {
+    color: #f68181;
+}
+
+.color-green {
+    color: #37ca69;
+}
+
 .t-action {
     background-color: #7e1010;
 }
@@ -37,7 +53,6 @@
 }
 
 // Responsivo
-
 @include media-breakpoint-down(md) {
     .card-tournament {
         font-size: small;
