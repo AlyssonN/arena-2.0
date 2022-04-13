@@ -1,0 +1,738 @@
+<style>
+    .card-tournament-banner {
+        width: 100%;
+        height: 23vh;
+        padding: 2rem;
+        border-bottom: 1px solid white !important;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url("https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/cardFundo.png");
+        background-size: cover;
+    }
+
+    .nick-page-component>div {
+        padding: 0rem;
+    }
+
+    .prize-division-modal .tab-underline.second:after {
+        left: 155px !important;
+    }
+
+    .prize-division-modal .tab-underline.fourth:after {
+        left: 210px;
+    }
+
+    .modal-header {
+        text-align: left;
+    }
+
+    .modal-content.text-center {
+        padding: 36px;
+        width: auto;
+        height: auto;
+    }
+
+    .modal-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0.75rem;
+    }
+
+    .modal-open {
+        overflow: hidden;
+    }
+
+    .modal-open .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        outline: 0;
+    }
+
+    .modal.fade.show {
+        display: flex !important;
+    }
+
+    .modal-dialog {
+        width: fit-content;
+        height: fit-content;
+        max-width: 850px;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+
+    .modal.fade .modal-dialog {
+        transform: none;
+    }
+
+    .modal.modal-static .modal-dialog {
+        transform: scale(1.02);
+    }
+
+    .modal-content {
+        position: relative;
+        display: flex;
+        border-radius: 5px;
+        flex-direction: column;
+        width: fit-content;
+        pointer-events: auto;
+        background-color: #272727FF;
+        background-clip: padding-box;
+        outline: 0;
+    }
+
+    .modal-content.text-center {
+        padding: 36px;
+    }
+
+    .modal-backdrop {
+        position: fixed;
+        display: flex;
+        top: 0;
+        left: 0;
+        z-index: 1040;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+    }
+
+    .modal-backdrop.fade {
+        opacity: 0;
+    }
+
+    .modal-backdrop.show {
+        opacity: 0.5;
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    .modal-header .close {
+        padding: 1rem;
+        margin: 1rem 1rem 1rem auto;
+    }
+
+    .modal-title {
+        margin-bottom: 0;
+    }
+
+    .modal-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: 1rem;
+    }
+
+    .modal-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0.75rem;
+    }
+
+    .modal-scrollbar-measure {
+        position: absolute;
+        top: -9999px;
+        width: 50px;
+        height: 50px;
+        overflow: scroll;
+    }
+
+    .prize-division-modal {
+        width: 875px;
+        text-align: left;
+    }
+
+    .prize-division-modal .tab-underline:after {
+        width: 188px;
+        left: 0;
+    }
+
+    .prize-division-modal .tab-underline.second:after {
+        left: 175px;
+    }
+
+    .prize-division-modal .tab-underline.third:after {
+        left: 365px;
+    }
+
+    .prize-division-modal .tab-underline.fourth:after {
+        left: 564px;
+    }
+
+    .prize-division-modal .table-container {
+        max-height: 520px;
+        max-width: 900px;
+        overflow: auto;
+    }
+
+    .prize-division-modal table {
+        width: 100%;
+        margin-top: 28px;
+    }
+
+    .prize-division-modal table td,
+    .prize-division-modal table th {
+        padding-bottom: 16px;
+    }
+
+    .prize-division-modal table tr td:first-child,
+    .prize-division-modal table tr th:first-child {
+        font-weight: 700;
+    }
+
+    .prize-division-modal table .orange-text td:first-child {
+        background: -webkit-linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .regulation-modal {
+        text-align: left;
+        width: 100%;
+        height: 400px;
+    }
+
+    .regulation-modal .terms {
+        height: 300px;
+        overflow-y: scroll;
+    }
+
+    .regulation-modal .terms span {
+        background-color: #0002;
+        border-radius: 5px;
+    }
+</style>
+<div>
+    <div class="card-tournament-banner align-end">
+        <div class="d-flex flex-column w-100 justify-content-between mt-3">
+            <p class="text-center fs-4 fw-bold text-lg-start">{{item?.name}}</p>
+            <div class="d-flex w-100 justify-content-end">
+                <span *ngIf="item?.awardType==0"
+                    class="radius-5 font-weight-700 flex-center uppercase w-30 h-30 px-2 py-1"
+                    style="background-color: #37CA69">
+                    A
+                </span>
+                <span *ngIf="item?.awardType==1"
+                    class="radius-5 font-weight-700 flex-center uppercase w-30 h-30 px-2 py-1"
+                    style="background-color: #1EBCC5">
+                    H
+                </span>
+                <span *ngIf="item?.awardType==2"
+                    class="radius-5 font-weight-700 flex-center uppercase w-30 h-30 px-2 py-1"
+                    style="background-color: #CD00FF">
+                    P
+                </span>
+            </div>
+            <p class="text-start">
+                {{item?.description}}
+            </p>
+        </div>
+    </div>
+    <section class="p-3">
+        <div class="d-lg-flex justify-content-around">
+            <div class="ww-lg-60">
+                <p class="text-start fs-5 fw-bold">Informações sobre o torneio</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex flex-column align-items-center justify-content-between border border-1 rounded-3 my-2 mx-1 p-1"
+                            style="width: 130px !important; height: 130px !important">
+                            <div class="col d-flex flex-column align-items-center justify-content-between rounded-3 my-2 mx-1 p-1"
+                                style="width: 130px !important; height: 130px !important">
+                                <span>Ativo</span>
+                                <img src="{{item?.picture}}" width="32px" height="32px" style="margin: 8px 0px"
+                                    class="rounded-circle">
+                                <span>{{item?.code.toUpperCase()}}</span>
+                            </div>
+                        </div>
+                        <div *ngFor="let info of screenInfo"
+                            class="col d-flex flex-column align-items-center justify-content-between border border-1 rounded-3 my-2 mx-1 p-1"
+                            style="width: 130px !important; height: 130px !important">
+                            <div style="width: 130px !important; height: 130px !important" *ngIf="info.index==1"
+                                class="d-flex flex-column align-items-center justify-content-between my-2 mx-1 p-1">
+                                <span style="font-size: 13px">{{ info.title }}</span>
+                                <div class="material-icons text-size-xxl" style="font-size: 40px">{{ info.icon }}</div>
+                                <span>{{ info.content | currency:'BRL' }}</span>
+                            </div>
+                            <div style="width: 130px !important; height: 130px !important" *ngIf="info.index==2"
+                                class="d-flex flex-column align-items-center justify-content-between rounded-3 my-2 mx-1 p-1">
+                                <span style="font-size: 13px">{{ info.title }}</span>
+                                <i class="material-icons text-size-xxl" style="font-size: 40px;">{{ info.icon }}</i>
+                                <span class="text-nowrap">{{ info.content | currency:'BRL' }}</span>
+                            </div>
+                            <div style="width: 130px !important; height: 130px !important" *ngIf="info.index==3"
+                                class="d-flex flex-column align-items-center justify-content-between rounded-3 mx-1 my-2 p-1">
+                                <span style="font-size: 13px">{{ info.title }}</span>
+                                <i class="material-icons text-size-xxl" style="font-size: 40px; max-width: 40px">{{
+                                    info.icon }}</i>
+                                <span>{{item?.durationH>=10?item?.durationH:'0'+item?.durationH}}Hs.
+                                    {{item?.durationM>=10?item?.durationM:'0'+item?.durationM}}m.</span>
+                            </div>
+                            <div style="width: 130px !important; height: 130px !important" *ngIf="info.index==4"
+                                class="d-flex flex-column align-items-center justify-content-between rounded-3 my-2 mx-1 p-1">
+                                <span style="font-size: 13px">{{ info.title }}</span>
+                                <i class="material-icons text-size-xxl" style="font-size: 40px;">{{ info.icon }}</i>
+                                <span>{{ info.content | currency:'':'+T$' }}</span>
+                            </div>
+                            <div style="width: 130px !important; height: 130px !important" *ngIf="info.index==5"
+                                class="d-flex flex-column align-items-center justify-content-between rounded-3 my-2 mx-1 p-1">
+                                <span style="font-size: 13px">{{ info.title }}</span>
+                                <i class="material-icons text-size-xxl" style="font-size: 40px;">{{info.icon}}</i>
+                                <span class="text-success text-nowrap">{{ info.content }}</span>
+                            </div>
+                            <div style="width: 130px !important; height: 130px !important"
+                                *ngIf="info.index==7 || info.index==8 || info.index==9"
+                                class="d-flex flex-column align-items-center justify-content-between rounded-3 my-2 mx-1 p-1">
+                                <p>{{ info.title }}</p>
+                                <span class="material-icons my-1">{{ info.icon }}</span>
+                                <p class="font-weight-700">{{ info.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-5 px-2">
+                    <p class="text-lg-start fs-5 fw-bold">Tempo de torneio</p>
+                    <div class="d-flex justify-content-md-center justify-content-lg-start align-items-md-center">
+                        <!-- <div class="d-flex flex-column d-lg-none mb-3 ww-md-40">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="material-icons me-3" style="font-size: 40px;">schedule</i>
+                        <span class="fw-bold text-nowrap me-2">Começou há:</span>
+                        <span *ngIf="notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                            {{item?.startAt | date:'dd/MM/yyyy HH:mm:ss'
+                        <span *ngIf="!notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                            {{item?.startAt | date:'HH:mm:ss'}}
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="material-icons me-3" style="font-size: 40px;">schedule</i>
+                        <span class="fw-bold ww-30 me-2">Término:</span>
+                        <span *ngIf="notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                            {{item?.endAt | date:'dd/MM/yyyy HH:mm:ss'}}
+                        </span>
+                        <span *ngIf="!notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                            {{item?.endAt | date:'HH:mm:ss'}}
+                        </span>
+                    </div>
+                </div> -->
+                        <div class="d-none d-lg-flex align-items-center">
+                            <i class="material-icons me-3" style="font-size: 40px;">schedule</i>
+                            <span class="fw-bold text-nowrap me-5">Começou há:
+                                <span *ngIf="notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                                    {{item?.startAt | date:'dd/MM/yyyy HH:mm:ss'}}
+                                </span>
+                                <span *ngIf="!notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                                    {{item?.startAt | date:'HH:mm:ss'}}
+                                </span>
+                            </span>
+                            <span class="fw-bold">Término:
+                                <span *ngIf="notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                                    {{item?.endAt | date:'dd/MM/yyyy HH:mm:ss'}}
+                                </span>
+                                <span *ngIf="!notToday" class="arena-orange-gradient-text fw-bold text-nowrap">
+                                    {{item?.endAt | date:'HH:mm:ss'}}
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="max-width: 24rem"
+                class="d-flex flex-column justify-content-center justify-content-lg-start ww-md-50 ww-lg-30 mx-auto mx-xl-1">
+                <div class="d-flex">
+                    <div>
+                        <img src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/logo-arena.png"
+                            class="img-100">
+                    </div>
+                    <div class="align-self-center"><img
+                            src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/trader_evolution_logo.png"
+                            width="200px">
+                    </div>
+                </div>
+                <button *ngIf="inGame && !disabledStartAt" [routerLink]="['/new/simulator/', _tournamentPersonId]"
+                    class="btn-arena px-5 text-nowrap" style="background-color: #4053DC">Entrar no torneio</button>
+                <button [disabled]="disabledStartAt" [routerLink]="['/affiliate/tournament/ranking/', item?.id]"
+                    class="btn-arena px-5 text-nowrap" style="background-color: #4053DC">Ver Ranking</button>
+                <!-- <button class="btn-arena px-5 text-nowrap" style="background-color: #4053DC">Chat do torneio</button> -->
+            </div>
+        </div>
+        <div class="overflow-auto mt-5">
+            <div class="d-flex justify-content-xxl-around">
+                <div class="me-3">
+                    <img class="rounded-3"
+                        src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/image 30.png"
+                        alt="desafioTrader" />
+                </div>
+                <div class="me-3">
+                    <img class="rounded-3"
+                        src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/image 29.png"
+                        alt="invistaEmVocê" />
+                </div>
+                <div class="me-3">
+                    <img class="rounded-3"
+                        src="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/img/image 28.png"
+                        alt="semanaInvestidora" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="d-lg-flex">
+                <div (click)="openModal(prizeDivisionAllIn)" class="py-3 px-3 card-gradient mt-3 cursor-pointer">
+                    <p class="fs-5 fw-bold">Divisão dos prêmios</p>
+                    <p>Clique aqui e veja como é a tabela de divisão dos prêmios,lembrando que caso
+                        <span class="arena-orange-gradient-text fw-bold">não dê a lotação do torneio a premiação vai ser
+                            dividida proporcionalmente <br></span>
+                        ao número de participantes, conforme a tabela anexo.
+                    </p>
+                </div>
+                <div class="py-3 px-3 border-bottom d-lg-none mt-3">
+                    <p class="fs-5 fw-bold pe-1">Regulamento</p>
+                    <p>Clique aqui e veja como é a tabela de divisão dos prêmios, lembrando que caso não dê a lotação do
+                        torneio a
+                        premiação vai ser dividida proporcionalmente ao número de participantes.</p>
+                    <p class="cursor-pointer" (click)="openModal(regulation)"><u>Ler mais</u></p>
+                </div>
+                <div class="py-3 px-3 d-none d-lg-inline mt-3">
+                    <p class="fs-5 fw-bold">Regulamento</p>
+                    <p class="border-end">Clique aqui e veja como é a tabela de divisão dos prêmios, lembrando que caso
+                        não
+                        dê a
+                        lotação do torneio a premiação vai ser dividida proporcionalmente ao número de participantes.
+                    </p>
+                    <p class="cursor-pointer" (click)="openModal(regulation)"><u>Ler mais</u></p>
+                </div>
+                <div class="py-3 px-3 mt-3">
+                    <p class="fs-5 fw-bold">Termos de uso</p>
+                    <p>Os investidores devem considerar cuidadosamente os objetivos, riscos, encargos e despesas antes
+                        de
+                        investir.
+                        Antes de investir em qualquer serviço ofertado pela Trader.
+                    </p>
+                    <p class="cursor-pointer" (click)="openModal(usageTerms)"><u>Ler mais</u></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Templates -->
+
+<ng-template #noCreditAvailable>
+    <div class="no-credit-modal">
+        <div class="d-flex justify-content-end mb-2">
+            <span (click)="closeModal()" class="material-icons close-btn cursor-pointer">clear</span>
+        </div>
+        <section>
+            <h2 class="mb-2">
+                Parece que você não tem saldo disponível para entra no torneio
+            </h2>
+            <p>
+                Para participar dos torneios, você precisa ter na sua carteira trade o
+                valor de entrada. Escolha umas das formas de depósito dentro da sua
+                carteira para continuar.
+            </p>
+        </section>
+
+        <div class="d-flex justify-content-center mt-2">
+            <button>Ir para minha carteira</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #regulation>
+    <div class="regulation-modal">
+        <div class="d-flex justify-content-between">
+            <h2>Regulamento</h2>
+            <span (click)="closeModal()" class="material-icons close-btn cursor-pointer">clear</span>
+        </div>
+
+        <div class="terms mt-2">
+            <span class="font-size-12 p-2 mr-1">
+                <h2 class="font-size-32">Regulamento Geral dos torneios</h2>
+                <br>
+                <p>- Os torneios da plataforma tem a duração estipulada em suas regras,
+                    que podem ir de 1 hora até 1 dia, e são todos operados pelo simulador
+                    em tempo real da Arena Gotrade. </p>
+                <br>
+                <p>- Todo participante começa com o mesmo saldo em moedas fictícias para operar,
+                    e o objetivo é alcançar a maior rentabilidade possível durante o torneio.
+                    São permitidas compras e vendas simuladas do ativo especificado para o torneio,
+                    podendo ser Mini-contratos de índice (WIN) ou Mini-Contratos de Dólar (WDO)</p>
+                <br>
+                <p>- Ao final do torneio, será apresentada a classificação dos participantes em ordem
+                    decrescente, da maior até a menor rentabilidade acumulada ao longo do torneio.</p>
+                <br>
+                <p>- Será considerado o vencedor do torneio, o participante que apresentar o maior
+                    resultado financeiro positivo.</p>
+                <br>
+                <p>
+                    - Serão premiados os traders mais bem colocados no torneio (aproximadamente 15%
+                    dos participantes na modalidade High Prize e 40% na modalidade All Win) e a
+                    premiação será realizada de acordo com a tabela disponibilizada nos detalhes do torneio.
+                </p>
+                <br>
+                <p>
+                    - O valor da premiação é definido pela quantidade de participantes, sendo o valor mostrado
+                    nos detalhes do torneio o fundo de premiações máximo para caso atinja o limite de participantes
+                    na sala. Caso tenha menos participantes inscritos ao final do torneio, o fundo de prêmios é
+                    proporcional a essa quantidade, e dividido entre os vencedores de acordo com a Tabela de
+                    Premiações completa, que pode ser acessada nos detalhes do torneio.
+                </p>
+                <br>
+                <p>
+                    - Todo participante pode realizar compras e vendas simuladas com o saldo ficticio da forma que
+                    quiser, durante o tempo em que o torneio estiver em andamento, de acordo com as regras do torneio
+                </p>
+                <br>
+                <p>
+                    - A exposição máxima de contratos, que é a quantidade máxima de contratos que você pode ter
+                    executados simultaneamente, é definida por torneio, conforme as regras acima.
+                </p>
+                <br>
+                <p>
+                    - Caso as perdas do participante ultrapassem 75% do valor do saldo inicial, esse participante
+                    é desclassificado do torneio e não pode mais enviar ordens.
+                </p>
+                <br>
+                <p>
+                    - No final do torneio, caso tenha alguma operação aberta, ela é automaticamente
+                    encerrada a preço de mercado.
+                </p>
+                <br>
+                <p>
+                    - Caso o participante tenha entrado no torneio utilizando saldo de cupom de bônus,
+                    o valor do cupom é descontado do prêmio final, mas todo o lucro é depositado em valores resgatáveis
+                    instantaneamente após o fim do torneio.
+                </p>
+            </span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #usageTerms>
+    <div class="regulation-modal">
+        <div class="d-flex justify-content-between">
+            <h2>Termos de uso</h2>
+            <span (click)="closeModal()" class="material-icons close-btn cursor-pointer">clear</span>
+        </div>
+        <div class="terms mt-2">
+            <span class="font-size-12 p-2 mr-1">
+                <nick-layer layerId="7ba657bd-8551-47f5-906c-138e832533e9"></nick-layer>
+            </span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #prizeDivisionAllIn>
+    <div class="prize-division-modal">
+        <div class="d-flex justify-content-between">
+            <h2 class="mb-2">Divisão dos prêmios</h2>
+            <span (click)="closeModal()" class="material-icons close-btn cursor-pointer">clear</span>
+        </div>
+
+        <div class="pr-2 table-container">
+
+            <table *ngIf="prizeMaps" class="prize-table text-center">
+                <thead>
+                    <tr>
+                        <th>Participantes</th>
+                        <th *ngFor="let item of prizeMaps[1] ; let i = index">
+                            {{i+2}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let _line of prizeMaps | keyvalue; let i = index">
+                        <ng-container *ngFor="let line of prizeMaps | keyvalue">
+                            <ng-container *ngIf="line.value[1].ranking == i+1">
+                                <td class="coluna1 color-orange-gradient" style="font-weight: 700">{{line.key}}º lugar
+                                </td>
+                                <td *ngFor="let j of [].constructor(item.participantLimit-line.value.length-1)">
+                                    -
+                                </td>
+                                <ng-container *ngFor="let _item of line.value">
+                                    <td>
+                                        {{(_item.award * item.inputAmount) | currency:'BRL'}}
+                                    </td>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #prizeDivisionHighPrize>
+    <div class="prize-division-modal">
+        <div class="d-flex justify-content-between">
+            <h2 class="mb-2">Divisão dos prêmios</h2>
+            <span (click)="closeModal()" class="material-icons close-btn cursor-pointer">clear</span>
+        </div>
+
+        <div class="d-flex">
+            <div (click)="activeTab = 2" [class.font-weight-700]="activeTab === 2">
+                <span class="px-3 cursor-pointer">High Price R$20</span>
+            </div>
+
+            <div (click)="activeTab = 3" [class.font-weight-700]="activeTab === 3">
+                <span class="px-3 cursor-pointer">High Price R$40</span>
+            </div>
+        </div>
+        <div [ngClass]="{ 'fourth': activeTab === 3}" class="tab-underline"></div>
+
+        <div class="pr-2 table-container">
+            <ng-container *ngIf="activeTab === 2">
+                <table class="text-center">
+                    <tr>
+                        <th *ngFor="let item of division; let i = index" class="font-weight-700">
+                            {{item.playerQuantity}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.winners}}</td>
+                    </tr>
+                    <tr class="orange-text">
+                        <td *ngFor="let item of division">{{item.first}}</td>
+                    </tr>
+                    <tr class="orange-text">
+                        <td *ngFor="let item of division">{{item.second}}</td>
+                    </tr>
+                    <tr class="orange-text">
+                        <td *ngFor="let item of division">{{item.third}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.fourth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.fifth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.sixth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.seventh}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.eighth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.ninth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.tenth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.eleventh}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.twelfth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.thirteenth}}</td>
+                    </tr>
+                </table>
+            </ng-container>
+
+            <ng-container *ngIf="activeTab === 3">
+                <table class="text-center">
+                    <tr>
+                        <th *ngFor="let item of division; let i = index" class="font-weight-700">
+                            {{item.playerQuantity}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.winners}}</td>
+                    </tr>
+                    <tr class="orange-text">
+                        <td *ngFor="let item of division">{{item.first}}</td>
+                    </tr>
+                    <tr class="orange-text">
+                        <td *ngFor="let item of division">{{item.second}}</td>
+                    </tr>
+                    <tr class="orange-text">
+                        <td *ngFor="let item of division">{{item.third}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.fourth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.fifth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.sixth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.seventh}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.eighth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.ninth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.tenth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.eleventh}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.twelfth}}</td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let item of division">{{item.thirteenth}}</td>
+                    </tr>
+                </table>
+            </ng-container>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #confirmModal>
+    <div class="modal-header text-center" style="display: block">
+        <div>
+            <h1 class="beta-mb-12 font-size-20">Participar do torneio</h1>
+            <span>
+                Deseja participar do torneio {{item?.name}} no valor de {{item?.inputAmount | currency:'BRL'}}
+            </span>
+            <label style="margin-bottom: auto; color: white; margin-right: 20px;" class="pure-material-checkbox">
+                <nick-checkbox [nickCrudField]="tournamentForm.useCoupon" [options]="optionsCheckbox" [style]="1">
+                </nick-checkbox>
+
+            </label>
+            <!-- 
+        <nick-input *ngIf="item?.awardType!=2" [nickCrudField]="tournamentForm.password" placeholder="Digite sua senha" type="password">
+        </nick-input> -->
+        </div>
+    </div>
+
+    <div style="text-align: left; width: 36rem" class="modal-body"></div>
+    <div class="modal-footer" style="display: flex; justify-content: space-evenly">
+        <a (click)="closeModal()" style="cursor: pointer" class="cancelTxt">
+            Cancelar
+        </a>
+        <button (click)="participateTournament()">
+            Participar
+        </button>
+    </div>
+</ng-template>

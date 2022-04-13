@@ -1,0 +1,52 @@
+<link
+    href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+    rel="stylesheet">
+<link href="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/css/arena2.css" rel="stylesheet">
+
+<main class="main-profile-section d-md-flex my-5">
+    <!-- Detalhes do torneio -->
+    <section style="background: #0c0c0c;" class="right-section-tournament arena-border d-flex flex-column align-items-center">
+        <div class="text-center my-2">
+            <h5>{{_id == 'new' ? 'Criar' : 'Editar'}} Liga</h5>
+        </div>
+        <div class="d-flex">
+            <div class="mx-3">
+                <label *ngIf="nickFile1.labelInputFile && form.picture.value" [for]="nickFile1.labelInputFile.nativeElement.htmlFor" class="material-icons circle-icon pic-profile" [ngStyle]="{'background-image': 'url('+form.picture.value+');'}" style="background-size: cover;line-height: 167%;cursor:pointer; background-image: url({{form.picture.value}})"></label>
+                <nick-file #nickFile1 [nickCrudField]="form.picture" [style]="1">photo_camera</nick-file>  
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <label *ngIf="nickFile1.labelInputFile" [for]="nickFile1.labelInputFile.nativeElement.htmlFor" class="material-icons-outlined me-2 cursor-pointer m-0">add_a_photo</label>
+                <label class="m-0 cursor-pointer" *ngIf="nickFile1.labelInputFile" [for]="nickFile1.labelInputFile.nativeElement.htmlFor">editar foto</label>
+            </div>
+        </div>
+        <div class="tournament-bottom">
+            <div class="">
+                <nick-input [nickCrudField]="form.title" placeholder="Nome da liga" class=" w-100 beta-mr-28">
+                </nick-input>
+                <nick-textarea [nickCrudField]="form.description" placeholder="Descrição da liga"
+                    class="beta-mr-28 w-100 my-3">
+                </nick-textarea>
+            </div>
+            <p class="text-center fw-bold ww-100">Ativos da Liga</p>
+            <div class="d-flex flex-wrap justify-content-center">
+                <button (click)="ativoAtual[0] ? ativoAtual[0] = false : ativoAtual[0] = true" [ngClass]="{'selecionado' : ativoAtual[0]}"
+                    class="arena-border">Futuros</button>
+                <button (click)="ativoAtual[1] ? ativoAtual[1] = false : ativoAtual[1] = true" [ngClass]="{'selecionado' : ativoAtual[1]}"
+                    class="selecionado arena-border">Ações</button>
+                <!-- <button (click)="ativoAtual[2] ? ativoAtual[2] = false : ativoAtual[2] = true" [ngClass]="{'selecionado' : ativoAtual[2]}"
+                    class="arena-border">Criptomoedas</button>
+                <button (click)="ativoAtual[3] ? ativoAtual[3] = false : ativoAtual[3] = true" [ngClass]="{'selecionado' : ativoAtual[3]}"
+                    class="arena-border">Flls</button> -->
+            </div>
+        </div>
+        <!-- <nick-select [nickCrudField]="form.visualIdentity" placeholder="Identidade visual" [options]="visualOptions"
+            class="ww-100 ww-md-25 beta-mr-28 d-block my-5">
+        </nick-select> -->
+        <div class="d-flex justify-content-end align-items-center">
+            <button class="mx-2 return-btn">Voltar</button>
+            <button class="save-btn">Salvar Dados</button>
+        </div>
+    </section>
+
+
+</main>

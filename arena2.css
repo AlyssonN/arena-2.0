@@ -3825,16 +3825,16 @@ textarea.form-control-lg {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #b97e18;
 }
 .nav-tabs .nav-link {
   margin-bottom: -1px;
   border: 1px solid transparent;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 0.7rem;
+  border-top-right-radius: 0.7rem;
 }
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-  border-color: #e9ecef #e9ecef #dee2e6;
+  border-color: #e9ecef #e9ecef #b97e18;
   isolation: isolate;
 }
 .nav-tabs .nav-link.disabled {
@@ -3845,8 +3845,8 @@ textarea.form-control-lg {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #363636;
-  border-color: #dee2e6 #dee2e6 #363636;
+  background-color: #161616;
+  border-color: #b97e18 #b97e18 #161616;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -11452,15 +11452,22 @@ textarea.form-control-lg {
   -webkit-text-fill-color: transparent;
 }
 
+.arena-blue-gradient-text {
+  background: linear-gradient(46.67deg, #158eb2 -21.02%, #158eb2 108.85%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .arena-silver-gradient-text {
-  background: -webkit-linear-gradient(180deg, #BFBFBF 0%, #616161 100%);
+  background: -webkit-linear-gradient(180deg, #bfbfbf 0%, #616161 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .arena-bronze-gradient-text {
-  background: -webkit-linear-gradient(46.67deg, #763714 -21.02%, #FE8C3A 108.85%);
+  background: -webkit-linear-gradient(46.67deg, #763714 -21.02%, #fe8c3a 108.85%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -11488,6 +11495,10 @@ textarea.form-control-lg {
 
 progress[value] {
   background-color: #eee;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 @media (max-width: 767.98px) {
@@ -12432,6 +12443,31 @@ header h1, header .h1 {
   padding: 1rem;
 }
 
+.card-tournament-info {
+  border: 1px solid #b97e18 !important;
+}
+
+li.nav-item {
+  background: #161616;
+  border-top-right-radius: 0.7rem;
+  border-top-left-radius: 0.7rem;
+  border: white white #161616;
+}
+
+.tab-pane {
+  background-color: #161616;
+  border-radius: 0.7rem;
+}
+
+.rounded-bottom-tab {
+  border-bottom-left-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+}
+
+.card-tournament-info {
+  border: none;
+}
+
 .arena-header-container {
   height: 65px;
 }
@@ -12583,11 +12619,12 @@ button.beta-mx-28 {
 
 body * {
   scrollbar-width: thin;
-  scrollbar-color: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+  scrollbar-color: linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
 }
 
 body *::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 body *::-webkit-scrollbar-track {
@@ -12595,7 +12632,7 @@ body *::-webkit-scrollbar-track {
 }
 
 body *::-webkit-scrollbar-thumb {
-  background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+  background: linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
   border-radius: 20px;
 }
 
@@ -12608,6 +12645,23 @@ body *::-webkit-scrollbar-track-piece {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.all-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (width: 1366px) {
+  body {
+    zoom: 80%;
+  }
+}
+@media (max-width: 481px) {
+  .nick-page-component > div {
+    padding: 0.1rem !important;
+  }
 }
 
 /*# sourceMappingURL=arena2.css.map */

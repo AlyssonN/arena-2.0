@@ -1,0 +1,46 @@
+<link
+    href="https://fonts.googleapis.com/css?family=Material+Icons%7CMaterial+Icons+Outlined%7CMaterial+Icons+Two+Tone%7CMaterial+Icons+Round%7CMaterial+Icons+Sharp"
+    rel="stylesheet">
+<link href="https://cdn.nickbuilder.com.br/4fa81a8d-4d56-49be-85b6-f5d5d2ebfc21/css/arena2.css" rel="stylesheet">
+
+<main class="main-profile-section d-md-flex my-5">
+    <!-- Detalhes do torneio -->
+    <section style="background: #0c0c0c;" class="right-section-tournament arena-border d-flex flex-column align-items-center">
+        <div class="text-center my-2">
+            <h5>{{_id == 'new' ? 'Criar' : 'Editar'}} Equipe</h5>
+        </div>
+        <div class="d-flex">
+            <div class="mx-3">
+                <label *ngIf="nickFile1.labelInputFile && form.picture.value"
+                    [for]="nickFile1.labelInputFile.nativeElement.htmlFor"
+                    class="material-icons circle-icon pic-profile"
+                    [ngStyle]="{'background-image': 'url('+form.picture.value+');'}"
+                    style="background-size: cover;line-height: 167%;cursor:pointer; background-image: url({{form.picture.value}})"></label>
+                <nick-file #nickFile1 [nickCrudField]="form.picture" [style]="1">photo_camera</nick-file>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <label *ngIf="nickFile1.labelInputFile" [for]="nickFile1.labelInputFile.nativeElement.htmlFor"
+                    class="material-icons-outlined me-2 cursor-pointer m-0">add_a_photo</label>
+                <label class="m-0 cursor-pointer" *ngIf="nickFile1.labelInputFile"
+                    [for]="nickFile1.labelInputFile.nativeElement.htmlFor">editar foto</label>
+            </div>
+        </div>
+        <div class="tournament-bottom">
+            <div class="">
+                <nick-input [nickCrudField]="form.title" placeholder="Nome da Equipe" class=" w-100 beta-mr-28">
+                </nick-input>
+                <nick-select [nickCrudField]="form.participants" placeholder="Participantes"
+                    [options]="participantsOptions" class="ww-100 ww-md-25 beta-mr-28 d-block my-5"> </nick-select>
+                <nick-input [nickCrudField]="form.password" placeholder="Senha para participar"
+                    class=" w-100 beta-mr-28">
+                </nick-input>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end align-items-center my-3">
+            <button class="mx-2 return-btn">Voltar</button>
+            <button class="save-btn">Salvar Dados</button>
+        </div>
+    </section>
+
+
+</main>

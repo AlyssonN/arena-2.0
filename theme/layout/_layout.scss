@@ -5,11 +5,12 @@
 
 body * {
     scrollbar-width: thin;
-    scrollbar-color: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+    scrollbar-color: linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
 }
 
 body *::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
 }
 
 body *::-webkit-scrollbar-track {
@@ -17,7 +18,7 @@ body *::-webkit-scrollbar-track {
 }
 
 body *::-webkit-scrollbar-thumb {
-    background: linear-gradient(46.67deg, #EE322F -21.02%, #FEE53A 108.85%);
+    background: linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
     border-radius: 20px;
 }
 
@@ -30,4 +31,22 @@ body *::-webkit-scrollbar-track-piece {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.all-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (width: 1366px) {
+    body {
+        zoom: 80%;
+    }
+}
+
+@media (max-width: 481px) {
+    .nick-page-component > div {
+        padding: 0.1rem !important;
+    }
 }

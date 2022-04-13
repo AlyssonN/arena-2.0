@@ -41,15 +41,22 @@
     -webkit-text-fill-color: transparent;
 }
 
+.arena-blue-gradient-text {
+    background: linear-gradient(46.67deg, rgb(21, 142, 178) -21.02%, rgb(21, 142, 178) 108.85%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .arena-silver-gradient-text {
-    background: -webkit-linear-gradient(180deg, #BFBFBF 0%, #616161 100%);
+    background: -webkit-linear-gradient(180deg, #bfbfbf 0%, #616161 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .arena-bronze-gradient-text {
-    background: -webkit-linear-gradient(46.67deg, #763714 -21.02%, #FE8C3A 108.85%);
+    background: -webkit-linear-gradient(46.67deg, #763714 -21.02%, #fe8c3a 108.85%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -59,11 +66,11 @@
     background: -webkit-linear-gradient(46.67deg, #ee322f -21.02%, #fee53a 108.85%);
 }
 
-.text-size-s{
+.text-size-s {
     font-size: small;
 }
 
-.text-size-l{
+.text-size-l {
     font-size: large;
 }
 
@@ -77,6 +84,10 @@
 
 progress[value] {
     background-color: #eee;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 
 @include media-breakpoint-down(md) {
